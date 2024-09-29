@@ -1,6 +1,7 @@
 package com.dunhill.Car_Rental.controller;
 
 
+
 import com.dunhill.Car_Rental.Dtos.CreateCategoryDto;
 import com.dunhill.Car_Rental.Dtos.ResponseCategoryDto;
 import com.dunhill.Car_Rental.Entity.Category;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryController {
 
     private CategoryService categoryService;
+
+
     @PostMapping
     public ResponseCategoryDto save(@RequestBody CreateCategoryDto createCategoryDto) {
       return  categoryService.save(createCategoryDto);
