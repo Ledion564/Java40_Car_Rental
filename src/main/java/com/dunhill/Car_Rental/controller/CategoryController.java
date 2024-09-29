@@ -1,6 +1,8 @@
 package com.dunhill.Car_Rental.controller;
 
 
+import com.dunhill.Car_Rental.Dtos.CreateCategoryDto;
+import com.dunhill.Car_Rental.Dtos.ResponseCategoryDto;
 import com.dunhill.Car_Rental.Entity.Category;
 import com.dunhill.Car_Rental.repository.CategoryRepository;
 import com.dunhill.Car_Rental.service.CategoryService;
@@ -18,8 +20,8 @@ public class CategoryController {
 
     private CategoryService categoryService;
     @PostMapping
-    public Category save(@RequestBody Category newCategory){
-      return  categoryService.save(newCategory);
+    public ResponseCategoryDto save(@RequestBody CreateCategoryDto createCategoryDto) {
+      return  categoryService.save(createCategoryDto);
     }
 
 }
