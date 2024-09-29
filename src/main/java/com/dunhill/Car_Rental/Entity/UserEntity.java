@@ -1,22 +1,21 @@
 package com.dunhill.Car_Rental.Entity;
 
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "user")
+@Table(name = "Users")
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @Column(name = "username")
     private String username;

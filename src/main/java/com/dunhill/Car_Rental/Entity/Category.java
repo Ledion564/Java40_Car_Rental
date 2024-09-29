@@ -11,7 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Entity
 @Table(name= "Categories")
 public class Category {
