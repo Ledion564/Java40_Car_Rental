@@ -34,6 +34,7 @@ public class CarService {
     public void delete(long id){
         Car found= carRepository.findById(id).
                 orElseThrow(() -> new NotFoundException("cannot find this car!"));
+        carRepository.delete(found);
            }
 
     public ResponseCarDto update(CreateCarDto createCarDto){
