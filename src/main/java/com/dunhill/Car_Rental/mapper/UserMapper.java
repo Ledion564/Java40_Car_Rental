@@ -1,23 +1,22 @@
 package com.dunhill.Car_Rental.mapper;
 
 import com.dunhill.Car_Rental.Dtos.CreateUserDto;
-import com.dunhill.Car_Rental.Dtos.ResponseCarDto;
 import com.dunhill.Car_Rental.Dtos.ResponseUserDto;
-import com.dunhill.Car_Rental.Entity.UserEntity;
+import com.dunhill.Car_Rental.Entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
 
-    public UserEntity mapToEntity(CreateUserDto createUserDto){
-        UserEntity user = new UserEntity();
+    public User mapToEntity(CreateUserDto createUserDto){
+        User user = new User();
         user.setUsername(createUserDto.getUsername());
         user.setEmail(createUserDto.getEmail());
         user.setPassword(createUserDto.getPassword());
         return user;
     }
 
-    public ResponseUserDto mapToDto(UserEntity user){
+    public ResponseUserDto mapToDto(User user){
         ResponseUserDto responseUserDto = new ResponseUserDto();
         responseUserDto.setId(user.getId());
         responseUserDto.setUsername(user.getUsername());
@@ -26,10 +25,10 @@ public class UserMapper {
         return responseUserDto;
     }
 
-    public UserEntity update(CreateUserDto createUserDto,UserEntity userEntity){
-        userEntity.setUsername(createUserDto.getUsername());
-        userEntity.setEmail(createUserDto.getEmail());
-        userEntity.setPassword(createUserDto.getPassword());
-        return userEntity;
+    public User update(CreateUserDto createUserDto, User user){
+        user.setUsername(createUserDto.getUsername());
+        user.setEmail(createUserDto.getEmail());
+        user.setPassword(createUserDto.getPassword());
+        return user;
     }
 }
