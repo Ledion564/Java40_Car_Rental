@@ -6,10 +6,11 @@ import com.dunhill.car_rental.Dtos.CreateCategoryDto;
 import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
 import com.dunhill.car_rental.service.CategoryService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RequestMapping("/category")
@@ -20,8 +21,25 @@ public class CategoryController {
 
 
     @PostMapping
-    public ResponseCategoryDto save(@RequestBody CreateCategoryDto createCategoryDto) {
-      return  categoryService.save(createCategoryDto);
+    public ResponseEntity<ResponseCategoryDto> save(@RequestBody CreateCategoryDto createCategoryDto) {
+      return ResponseEntity.ok(categoryService.save(createCategoryDto));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ResponseCategoryDto>> getAll(){
+        return ResponseEntity.ok(categoryService.findAll());
+    }
+
+    @PutMapping
+    public ResponseEntity<ResponseCategoryDto> update(@RequestBody CreateCategoryDto createCategoryDto){
+        return ResponseEntity.ok(categoryService.update(createCategoryDto));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> delete(@RequestParam("cId") Long id){
+        categoryService.delete(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
