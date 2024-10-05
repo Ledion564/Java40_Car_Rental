@@ -25,15 +25,15 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Position position;  // EMPLOYEE, MANAGER
 
-    @ManyToOne
-    @JoinColumn(name = "branch_id")
-    private Branch branch;
-
-    @OneToMany(mappedBy = "employee")
-    private List<Loan> loans;
-
-    @OneToMany(mappedBy = "employee")
-    private List<Refund> refunds;
+//    @ManyToOne
+//    @JoinColumn(name = "branch_id")
+//    private Branch branch;
+//
+//    @OneToMany(mappedBy = "employee")
+//    private List<Loan> loans;
+//
+//    @OneToMany(mappedBy = "employee")
+//    private List<Refund> refunds;
 
 }
 

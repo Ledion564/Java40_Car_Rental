@@ -43,12 +43,12 @@ public class CategoryService {
         categoryRepository.delete(found);
     }
 
-    public ResponseCategoryDto update(CreateCategoryDto createCategoryDto){
-        Category found = categoryRepository.findByName(createCategoryDto.getName());
-        found = categoryMapper.update(createCategoryDto, found);
-
-        return categoryMapper.mapToDto(categoryRepository.save(found));
-    }
+//    public ResponseCategoryDto update(CreateCategoryDto createCategoryDto){
+////        Category found = categoryRepository.findByName(createCategoryDto.getName());
+//        found = categoryMapper.update(createCategoryDto, found);
+//
+//        return categoryMapper.mapToDto(categoryRepository.save(found));
+//    }
 
 
 

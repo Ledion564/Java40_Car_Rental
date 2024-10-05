@@ -23,27 +23,27 @@ public class Reservation {
     private LocalDate dateTo;
     private BigDecimal amount;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name = "car_id")
-    private Car car;
-
-    @ManyToOne
-    @JoinColumn(name = "pickup_branch_id")
-    private Branch pickupBranch;
-
-    @ManyToOne
-    @JoinColumn(name = "return_branch_id")
-    private Branch returnBranch;
-
-    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
-    private Loan loan;
-
-    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
-    private Refund refund;
+//    @ManyToOne
+//    @JoinColumn(name = "car_id")
+//    private Car car;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "pickup_branch_id")
+//    private Branch pickupBranch;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "return_branch_id")
+//    private Branch returnBranch;
+//
+//    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+//    private Loan loan;
+//
+//    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+//    private Refund refund;
 
 
 }

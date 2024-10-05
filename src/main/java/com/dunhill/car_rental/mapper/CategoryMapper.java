@@ -13,7 +13,7 @@ public class CategoryMapper {
     public Category mapToEntity(CreateCategoryDto createCategoryDto) {
 
         Category category = new Category();
-        category.setName(createCategoryDto.getName());
+        category.setUsername(createCategoryDto.getName());
         category.setDescription(createCategoryDto.getDescription());
         category.setCategoryType(createCategoryDto.getCategoryType());
         category.setPriority(createCategoryDto.getPriority());
@@ -27,7 +27,7 @@ public class CategoryMapper {
     public ResponseCategoryDto mapToDto(Category category) {
         ResponseCategoryDto responseCategoryDto = new ResponseCategoryDto();
         responseCategoryDto.setId(category.getId());
-        responseCategoryDto.setName(category.getName());
+        responseCategoryDto.setName(category.getUsername());
         responseCategoryDto.setDescription(category.getDescription());
         responseCategoryDto.setCategoryType(category.getCategoryType());
         responseCategoryDto.setPriority(category.getPriority());
@@ -41,7 +41,7 @@ public class CategoryMapper {
     }
 
     public Category update(CreateCategoryDto createCategoryDto, Category category){
-        category.setName(createCategoryDto.getName());
+        category.setUsername(createCategoryDto.getName());
         category.setDescription(createCategoryDto.getDescription());
         category.setCategoryType(createCategoryDto.getCategoryType());
         category.setPriority(createCategoryDto.getPriority());

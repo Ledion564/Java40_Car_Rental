@@ -1,42 +1,54 @@
 package com.dunhill.car_rental.Entity;
 
-import com.dunhill.car_rental.Entity.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
-@Table
+@Table(name = "Cars")
 public class Car {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
+    @Column(name = "Brand")
     private String brand;
+    @Column(name = "Model")
     private String model;
+    @Column(name = "Body_Type")
     private String bodyType;
-    private int year;
-    private String color;
-    private int mileage;
+    @Column(name = "manufacture_year")
+    private LocalDateTime manufactureYear;
+    @Column(name = "Colour")
+    private String colour;
+    @Column(name = "Mileage")
+    private long mileAge;
+    @Column(name = "Status")
+    private String status;
+    @Column(name = "Amount")
+    private long amount;
+    @Column(name = "created_by")
+    private String createdBy;
+    @Column(name = "created_at",nullable = false,updatable = false)
+    private LocalDateTime createdAt;
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
 
-    @Enumerated(EnumType.STRING)
-    private Status status; // BOOKED, AVAILABLE, UNAVAILABLE
-
-    private BigDecimal amountPerDay;
-
-    @ManyToOne
-    @JoinColumn(name = "branch_id")
-    private Branch branch;
-
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    private List<Reservation> reservations;
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 
 }

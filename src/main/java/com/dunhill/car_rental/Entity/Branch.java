@@ -19,15 +19,15 @@ public class Branch {
 
     private String address;
 
-    @ManyToOne
-    @JoinColumn(name = "rental_id")
-    private Rental rental;
-
-    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
-    private List<Employee> employees;
-
-    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
-    private List<Car> cars;
+//    @ManyToOne
+//    @JoinColumn(name = "rental_id")
+//    private Rental rental;
+//
+//    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
+//    private List<Employee> employees;
+//
+//    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
+//    private List<Car> cars;
 
 
 }

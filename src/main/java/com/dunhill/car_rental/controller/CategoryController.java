@@ -30,10 +30,10 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
-    @PutMapping
-    public ResponseEntity<ResponseCategoryDto> update(@RequestBody CreateCategoryDto createCategoryDto){
-        return ResponseEntity.ok(categoryService.update(createCategoryDto));
-    }
+//    @PutMapping
+//    public ResponseEntity<ResponseCategoryDto> update(@RequestBody CreateCategoryDto createCategoryDto){
+//        return ResponseEntity.ok(categoryService.update(createCategoryDto));
+//    }
 
     @DeleteMapping("/delete")
     public ResponseEntity<Void> delete(@RequestParam("cId") Long id){

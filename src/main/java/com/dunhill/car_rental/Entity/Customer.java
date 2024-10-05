@@ -22,8 +22,8 @@ public class Customer {
     private String email;
     private String address;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Reservation> reservations;
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+//    private List<Reservation> reservations;
 
 
 }

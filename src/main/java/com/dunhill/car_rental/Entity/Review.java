@@ -7,7 +7,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="Review")
+@Table(name="Reviews")
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -19,10 +20,10 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name ="Username", nullable = false)
+    @Column(name ="user_name", nullable = false)
     private String username;
 
-    @Column(name = "Description",nullable = false)
+    @Column(name = "description",nullable = false)
     private String description;
 
     @Column(name = "created_by")

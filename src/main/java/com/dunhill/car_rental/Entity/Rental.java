@@ -25,8 +25,8 @@ public class Rental {
     private String owner;
     private String logotype;
 
-    @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
-    private List<Branch> branches;
+//    @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
+//    private List<Branch> branches;
 
 
 }
