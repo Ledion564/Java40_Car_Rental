@@ -14,7 +14,7 @@ public class ResponseCarDto {
         private String brand;
         private String model;
         private String bodyType;
-        private LocalDateTime year;
+        private LocalDate manufactureYear;
         private String colour;
         private long mileAge;
         private String status;

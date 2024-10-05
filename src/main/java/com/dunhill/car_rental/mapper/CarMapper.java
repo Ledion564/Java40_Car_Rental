@@ -14,7 +14,7 @@ public class CarMapper {
         car.setBrand(createCarDto.getBrand());
         car.setModel(createCarDto.getModel());
         car.setBodyType(createCarDto.getBodyType());
-        car.setManufactureYear(createCarDto.getYear());
+        car.setManufactureYear(createCarDto.getManufactureYear());
         car.setColour(createCarDto.getColour());
         car.setMileAge(createCarDto.getMileAge());
         car.setStatus(createCarDto.getStatus());
@@ -29,7 +29,7 @@ public class CarMapper {
         responseCarDto.setBrand(car.getBrand());
         responseCarDto.setModel(car.getModel());
         responseCarDto.setBodyType(car.getBodyType());
-        responseCarDto.setYear(car.getManufactureYear());
+        responseCarDto.setManufactureYear(car.getManufactureYear());
         responseCarDto.setColour(car.getColour());
         responseCarDto.setMileAge(car.getMileAge());
         responseCarDto.setStatus(car.getStatus());
@@ -43,7 +43,7 @@ public class CarMapper {
         car.setBrand(dto.getBrand());
         car.setModel(dto.getModel());
         car.setBodyType(dto.getBodyType());
-        car.setManufactureYear(dto.getYear());
+        car.setManufactureYear(dto.getManufactureYear());
         car.setColour(dto.getColour());
         car.setMileAge(dto.getMileAge());
         car.setStatus(dto.getStatus());
