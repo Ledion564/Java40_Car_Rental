@@ -1,36 +1,42 @@
 package com.dunhill.car_rental.Entity;
 
+import com.dunhill.car_rental.Entity.enums.Status;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
-@Table(name = "Cars")
+@Table
 public class Car {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "Brand")
     private String brand;
-    @Column(name = "Model")
     private String model;
-    @Column(name = "Body_Type")
     private String bodyType;
-    @Column(name = "Year")
-    private LocalDate year;
-    @Column(name = "Colour")
-    private String colour;
-    @Column(name = "Mileage")
-    private long mileAge;
-    @Column(name = "Status")
-    private String status;
-    @Column(name = "Amount")
-    private long amount;
+    private int year;
+    private String color;
+    private int mileage;
+
+    @Enumerated(EnumType.STRING)
+    private Status status; // BOOKED, AVAILABLE, UNAVAILABLE
+
+    private BigDecimal amountPerDay;
+
+    @ManyToOne
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
+
 }
