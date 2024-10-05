@@ -22,7 +22,6 @@ public class CarService {
         Car car= carMapper.mapToEntity(createCarDto);
         Car savedCar = carRepository.save(car);
         ResponseCarDto responseCarDto = carMapper.mapToDto(savedCar);
-
         return responseCarDto;
     }
 

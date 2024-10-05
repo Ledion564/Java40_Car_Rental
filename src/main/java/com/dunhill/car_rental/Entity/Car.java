@@ -1,16 +1,15 @@
 package com.dunhill.car_rental.Entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "Cars")
 public class Car {
@@ -24,8 +23,8 @@ public class Car {
     private String model;
     @Column(name = "Body_Type")
     private String bodyType;
-    @Column(name = "manufacture_year")
-    private LocalDateTime manufactureYear;
+    @Column(name = "Year")
+    private LocalDate year;
     @Column(name = "Colour")
     private String colour;
     @Column(name = "Mileage")
@@ -34,21 +33,4 @@ public class Car {
     private String status;
     @Column(name = "Amount")
     private long amount;
-    @Column(name = "created_by")
-    private String createdBy;
-    @Column(name = "created_at",nullable = false,updatable = false)
-    private LocalDateTime createdAt;
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-
 }
