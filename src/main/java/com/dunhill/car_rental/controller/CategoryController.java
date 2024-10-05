@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @AllArgsConstructor
-@RequestMapping("/category")
+@RequestMapping("api/category")
 @RestController
 public class CategoryController {
 
@@ -30,10 +30,10 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
-//    @PutMapping
-//    public ResponseEntity<ResponseCategoryDto> update(@RequestBody CreateCategoryDto createCategoryDto){
-//        return ResponseEntity.ok(categoryService.update(createCategoryDto));
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseCategoryDto> update(@RequestBody CreateCategoryDto createCategoryDto,@PathVariable("id") Long id){
+        return ResponseEntity.ok(categoryService.update(createCategoryDto, id));
+    }
 
     @DeleteMapping("/delete")
     public ResponseEntity<Void> delete(@RequestParam("cId") Long id){
