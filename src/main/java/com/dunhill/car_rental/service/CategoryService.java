@@ -4,6 +4,7 @@ package com.dunhill.car_rental.service;
 import com.dunhill.car_rental.Dtos.CreateCategoryDto;
 import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
 import com.dunhill.car_rental.Entity.Category;
+import com.dunhill.car_rental.Exceptions.NotFoundException;
 import com.dunhill.car_rental.mapper.CategoryMapper;
 import com.dunhill.car_rental.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
@@ -30,8 +31,23 @@ public class CategoryService {
     }
 
 
-    public List<Category> findAll() {
-     return  categoryRepository.findAll();
+    public List<ResponseCategoryDto> findAll() {
+     return  categoryRepository.findAll().stream()
+             .map(categoryMapper::mapToDto)
+             .toList();
+    }
+
+    public void delete(long id){
+        Category found = categoryRepository.findById(id).
+                orElseThrow(()-> new NotFoundException("Cannot find this category!"));
+        categoryRepository.delete(found);
+    }
+
+    public ResponseCategoryDto update(CreateCategoryDto createCategoryDto){
+        Category found = categoryRepository.findByName(createCategoryDto.getName());
+        found = categoryMapper.update(createCategoryDto, found);
+
+        return categoryMapper.mapToDto(categoryRepository.save(found));
     }
 
 

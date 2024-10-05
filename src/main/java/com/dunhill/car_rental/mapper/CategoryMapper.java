@@ -5,6 +5,8 @@ import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
 import com.dunhill.car_rental.Entity.Category;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class CategoryMapper {
 
@@ -13,6 +15,12 @@ public class CategoryMapper {
         Category category = new Category();
         category.setName(createCategoryDto.getName());
         category.setDescription(createCategoryDto.getDescription());
+        category.setCategoryType(createCategoryDto.getCategoryType());
+        category.setPriority(createCategoryDto.getPriority());
+        category.setRating(createCategoryDto.getRating());
+        category.setCreatedBy(createCategoryDto.getCreatedBy());
+        category.setCreatedAt(LocalDateTime.now());
+        category.setActive(true);
         return category;
     }
 
@@ -21,7 +29,26 @@ public class CategoryMapper {
         responseCategoryDto.setId(category.getId());
         responseCategoryDto.setName(category.getName());
         responseCategoryDto.setDescription(category.getDescription());
+        responseCategoryDto.setCategoryType(category.getCategoryType());
+        responseCategoryDto.setPriority(category.getPriority());
+        responseCategoryDto.setRating(category.getRating());
+        responseCategoryDto.setCreatedBy(category.getCreatedBy());
+        responseCategoryDto.setCreatedAt(category.getCreatedAt());
+        responseCategoryDto.setUpdatedAt(category.getUpdatedAt());
+        responseCategoryDto.setActive(category.isActive());
 
         return responseCategoryDto;
+    }
+
+    public Category update(CreateCategoryDto createCategoryDto, Category category){
+        category.setName(createCategoryDto.getName());
+        category.setDescription(createCategoryDto.getDescription());
+        category.setCategoryType(createCategoryDto.getCategoryType());
+        category.setPriority(createCategoryDto.getPriority());
+        category.setRating(createCategoryDto.getRating());
+        category.setUpdatedAt(LocalDateTime.now());
+        category.setActive(createCategoryDto.isActive());
+
+        return category;
     }
 }
