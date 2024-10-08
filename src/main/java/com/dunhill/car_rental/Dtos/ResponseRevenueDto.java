@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Setter
 public class ResponseRevenueDto {
     private Long id;
-    private BigDecimal totalAmount;
-    private BigDecimal approvedAmount;
-    private BigDecimal unapprovedAmount;
+    private double totalAmount;
+    private double approvedAmount;
+    private double unapprovedAmount;
 }

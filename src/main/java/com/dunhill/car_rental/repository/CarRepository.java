@@ -1,9 +1,12 @@
 package com.dunhill.car_rental.repository;
 
 import com.dunhill.car_rental.Entity.Car;
+import com.dunhill.car_rental.Entity.Revenue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface CarRepository extends JpaRepository<Car,Long> {
@@ -73,6 +76,7 @@ public interface CarRepository extends JpaRepository<Car,Long> {
     @Query("SELECT c FROM Car c WHERE c.brand=?1 and c.bodyType=?2")
     List<Car> findByBrandAndBodyTypeIndex(@Param("brand") String brand, @Param("bodyType") String bodyType);
 
+}
 
 
     //Native Query with paramters
@@ -93,4 +97,4 @@ public interface CarRepository extends JpaRepository<Car,Long> {
 
 
 
-}
+

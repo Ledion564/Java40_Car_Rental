@@ -11,20 +11,20 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table
+@Table(name = "revenues")
 public class Revenue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Total_Amount")
-    private BigDecimal totalAmount;
+    @Column(name = "total_amount")
+    private double totalAmount;
 
-    @Column(name = "Approved_Amount")
-    private BigDecimal approvedAmount;
+    @Column(name = "approved_amount")
+    private double approvedAmount;
 
-    @Column(name = "Unapproved_Amount")
-    private BigDecimal unapprovedAmount;
+    @Column(name = "unapproved_amount")
+    private double unapprovedAmount;
 
     // Methods to calculate and update revenue
 }

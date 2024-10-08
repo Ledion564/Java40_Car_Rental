@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class CreateRevenueDto {
-    private BigDecimal totalAmount;
-    private BigDecimal approvedAmount;
-    private BigDecimal unapprovedAmount;
+    private double totalAmount;
+    private double approvedAmount;
+    private double unapprovedAmount;
 }

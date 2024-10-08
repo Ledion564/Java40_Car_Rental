@@ -46,3 +46,11 @@ CREATE TABLE IF NOT EXISTS Users(
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     is_active BOOLEAN
 );
+
+CREATE TABLE IF NOT EXISTS revenues(
+    id LONG AUTO_INCREMENT PRIMARY KEY,
+    total_amount DOUBLE,
+    approved_amount DOUBLE,
+    unapproved_amount DOUBLE
+
+);
