@@ -54,3 +54,11 @@ CREATE TABLE IF NOT EXISTS revenues(
     unapproved_amount DOUBLE
 
 );
+
+CREATE TABLE IF NOT EXISTS revenues(
+    id LONG AUTO_INCREMENT PRIMARY KEY,
+    total_amount DOUBLE,
+    approved_amount DOUBLE,
+    unapproved_amount DOUBLE
+
+);

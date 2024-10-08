@@ -4,6 +4,7 @@ import com.dunhill.car_rental.Entity.Car;
 import com.dunhill.car_rental.Entity.Revenue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,11 +22,11 @@ public interface CarRepository extends JpaRepository<Car,Long> {
             "AND (:colour IS NULL OR :colour = '' OR c.colour = :colour) " +
             "AND (:mileage IS NULL OR c.mileAge = :mileage) " +
             "AND (:amount IS NULL OR c.amount = :amount)")
-    List<Car> findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmount(String brand, String model, String bodyType, LocalDate manufactureYear, String colour,Long mileage,Long amount);
+    List<Car> findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmount(String brand, String model, String bodyType, LocalDate manufactureYear, String colour, Long mileage, Long amount);
 
     //JQPL Query with index
     @Query("SELECT c FROM Car c WHERE c.brand=?1 AND c.model=?2 AND c.bodyType=?3 AND c.manufactureYear=?4 AND c.colour=?5 AND c.mileAge=?6 AND c.amount=?7")
-    List<Car> findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmountWithIndex(String brand, String model, String bodyType,LocalDate manufactureYear, String colour, Long mileage, Long amount);
+    List<Car> findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmountWithIndex(String brand, String model, String bodyType, LocalDate manufactureYear, String colour, Long mileage, Long amount);
 
     //JQPL query with param
 //    @Query(value = "SELECT * FROM cars WHERE brand=:brand AND model=:model AND bodyType=:bodyType AND manufactureYear=:manufactureYear AND colour=:colour AND mileAge=:mileage AND amount=:amount",nativeQuery = true)
@@ -36,7 +37,7 @@ public interface CarRepository extends JpaRepository<Car,Long> {
 //                                                                                                    @Param("amount") Long amount);
     //manufactureYear search
     @Query("SELECT c FROM Car c WHERE c.manufactureYear=: manufactureYear")
-    List<Car>findByManufactureYear(LocalDate manufactureYear);
+    List<Car> findByManufactureYear(LocalDate manufactureYear);
 
     //brand
     @Query("SELECT c FROM Car c WHERE c.brand=:brand")
@@ -66,7 +67,7 @@ public interface CarRepository extends JpaRepository<Car,Long> {
     List<Car> findByBrandAndBodyType(String brand, String bodyType);
 
     @Query("SELECT c FROM Car c where c.colour=:colour and c.manufactureYear=:manufactureYear and c.amount=:amount")
-    List<Car> findByColourAndManufactureYearAndAmount(String colour, LocalDate manufactureYear,Long amount);
+    List<Car> findByColourAndManufactureYearAndAmount(String colour, LocalDate manufactureYear, Long amount);
 
 
     //JQPL Query with index
@@ -76,25 +77,21 @@ public interface CarRepository extends JpaRepository<Car,Long> {
     @Query("SELECT c FROM Car c WHERE c.brand=?1 and c.bodyType=?2")
     List<Car> findByBrandAndBodyTypeIndex(@Param("brand") String brand, @Param("bodyType") String bodyType);
 
-}
-
 
     //Native Query with paramters
-    @Query(value = "SELECT * FROM  cars  WHERE model =:model",nativeQuery = true)
-    List<Car> findByModelNativeQueryWithParams(@Param("model")String model);
+    @Query(value = "SELECT * FROM  cars  WHERE model =:model", nativeQuery = true)
+    List<Car> findByModelNativeQueryWithParams(@Param("model") String model);
 
-    @Query(value ="SELECT * FROM cars WHERE brand=:brand and bodyType=:bodyType",nativeQuery = true)
+    @Query(value = "SELECT * FROM cars WHERE brand=:brand and bodyType=:bodyType", nativeQuery = true)
     List<Car> findByBrandAndBodyTypeWithParams(String brand, String bodyType);
-
 
 
     //Native Query with index
     @Query(value = "SELECT * FROM cars WHERE model =?1", nativeQuery = true)
-    List<Car> findByModelNativeQueryWithIndex(@Param("model")String model);
+    List<Car> findByModelNativeQueryWithIndex(@Param("model") String model);
 
     @Query(value = "SELECT * FROM cars WHERE brand=?1 and body_type=?2", nativeQuery = true)
-    List<Car> findByBrandAndBodyTypeWithIndex(@Param("brand")String brand, @Param("body_type") String body_type);
+    List<Car> findByBrandAndBodyTypeWithIndex(@Param("brand") String brand, @Param("body_type") String body_type);
 
 
-
-
+}
