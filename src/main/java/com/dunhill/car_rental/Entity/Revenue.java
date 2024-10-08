@@ -17,8 +17,13 @@ public class Revenue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "Total_Amount")
     private BigDecimal totalAmount;
+
+    @Column(name = "Approved_Amount")
     private BigDecimal approvedAmount;
+
+    @Column(name = "Unapproved_Amount")
     private BigDecimal unapprovedAmount;
 
     // Methods to calculate and update revenue
