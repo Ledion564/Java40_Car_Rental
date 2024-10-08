@@ -6,6 +6,7 @@ import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
 import com.dunhill.car_rental.Entity.Category;
 import com.dunhill.car_rental.mapper.CategoryMapper;
 import com.dunhill.car_rental.repository.CategoryRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,9 @@ public class CategoryService {
         Category savedCategory = categoryRepository.save(category);
         return categoryMapper.mapToDto(savedCategory);
     }
+
+
+
 
     public void delete(Long id) {
         Category foundCategory = categoryRepository.findById(id).orElseThrow(()->new RuntimeException("Category not found"));
