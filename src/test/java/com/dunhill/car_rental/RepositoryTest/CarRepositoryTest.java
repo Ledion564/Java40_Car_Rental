@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +27,9 @@ public class CarRepositoryTest {
 
     @BeforeEach
     void setup(){
-        car = Car.builder().model("benz").colour("black").mileAge(220L).amount(100L).build();
-        Car car1 = Car.builder().model("volkswagen").colour("blue").mileAge(200L).brand("golf").id(4L).build();
-        Car car2 = Car.builder().model("volkswagen").colour("blue").mileAge(200L).brand("golf").id(5L).build();
+        car = Car.builder().model("benz").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("black").mileAge(220L).brand("bclass").amount(100L).build();
+        car1 = Car.builder().model("volkswagen").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("blue").mileAge(200L).brand("golf").amount(200L).id(4L).build();
+        car2 = Car.builder().model("volkswagen").bodyType("van").colour("blue").manufactureYear(LocalDate.of(1997,10,10)).mileAge(200L).brand("golf").amount(300L).id(5L).build();
     }
 
 
@@ -77,6 +78,47 @@ public class CarRepositoryTest {
         Optional<Car> found = carRepository.findById(savedCar.getId());
         assertThat(found).isNotPresent();
     }
+
+    @Test
+    public void testGetModel(){
+        carRepository.save(car);
+        List<Car> listCar = carRepository.findByModel("benz");
+        assertThat(listCar).isNotNull();
+        assertThat(listCar.get(0).getModel()).isEqualTo("benz");
+    }
+
+    @Test
+    public void testGetBrandAndBodyType(){
+        carRepository.save(car);
+        carRepository.save(car1);
+        List<Car> listCar = carRepository.findByBrandAndBodyType("golf","van");
+        assertThat(listCar).isNotNull();
+        assertThat(listCar.get(0).getBrand()).isEqualTo("golf");
+    }
+
+    @Test
+    public void testGetModelParams(){
+        carRepository.save(car1);
+        List<Car> found = carRepository.findByModelIndex("volkswagen");
+        assertThat(found).isNotNull();
+        assertThat(found.get(0).getColour()).isEqualTo("blue");
+    }
+
+    @Test
+    public void testThreeParams(){
+        carRepository.save(car);
+        carRepository.save(car1);
+        carRepository.save(car2);
+        List<Car> listCar = carRepository.findByColourAndManufactureYearAndAmount("blue",LocalDate.of(1997,10,10),200L);
+        System.out.println(listCar.size());
+        assertThat(listCar).isNotNull();
+        assertThat(listCar.get(0).getColour()).isEqualTo("blue");
+        assertThat(listCar.get(0).getManufactureYear()).isEqualTo(LocalDate.of(1997,10,10));
+        assertThat(listCar.get(0).getAmount()).isEqualTo(200L);
+
+    }
+
+
 
 
 }

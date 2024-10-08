@@ -1,14 +1,16 @@
 package com.dunhill.car_rental.Dtos;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ResponseCarDto {
         private long id;
         private String brand;

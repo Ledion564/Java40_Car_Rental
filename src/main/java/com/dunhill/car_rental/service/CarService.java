@@ -9,6 +9,7 @@ import com.dunhill.car_rental.repository.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -35,10 +36,16 @@ public class CarService {
         carRepository.delete(found);
            }
 
-    public ResponseCarDto update(CreateCarDto createCarDto){
-        Car found= carRepository.findCarByModel(createCarDto.getModel());
-        found=carMapper.update(createCarDto,found);
+//    public ResponseCarDto update(CreateCarDto createCarDto){
+////        Car found= carRepository.findCarByModel(createCarDto.getModel());
+////        found=carMapper.update(createCarDto,found);
+//
+////        return carMapper.mapToDto(carRepository.save(found));
+//    }
 
-        return carMapper.mapToDto(carRepository.save(found));
+    public List<ResponseCarDto> search(String brand, String model, String bodyType, LocalDate manufactureYear, String colour, Long mileage, Long amount){
+        return carRepository.findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmount(brand,model,bodyType,manufactureYear,colour,mileage,amount)
+                .stream().map(carMapper::mapToDto).toList();
+
     }
 }

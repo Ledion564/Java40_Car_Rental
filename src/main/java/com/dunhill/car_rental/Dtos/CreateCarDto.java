@@ -1,5 +1,6 @@
 package com.dunhill.car_rental.Dtos;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
 public class CreateCarDto {
     private String brand;
     private String model;

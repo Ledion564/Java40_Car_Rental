@@ -18,22 +18,29 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "Brand")
+    @Column(name = "brand")
     private String brand;
     @Column(name = "Model")
     private String model;
-    @Column(name = "Body_Type")
+
+    @Column(name = "body_Type")
     private String bodyType;
+
     @Column(name = "manufacture_year")
     private LocalDate manufactureYear;
-    @Column(name = "Colour")
+
+    @Column(name = "colour")
     private String colour;
-    @Column(name = "Mileage")
+
+    @Column(name = "mileage")
     private long mileAge;
-    @Column(name = "Status")
+
+    @Column(name = "status")
     private String status;
-    @Column(name = "Amount")
-    private long amount;
+
+    @Column(name = "amount")
+    private Long amount;
+
     @Column(name = "created_by")
     private String createdBy;
 
