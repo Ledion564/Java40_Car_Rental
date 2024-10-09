@@ -1,7 +1,10 @@
 package com.dunhill.car_rental.service;
 
+import com.dunhill.car_rental.Dtos.CreateCategoryDto;
 import com.dunhill.car_rental.Dtos.CreateUserDto;
+import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
 import com.dunhill.car_rental.Dtos.ResponseUserDto;
+import com.dunhill.car_rental.Entity.Category;
 import com.dunhill.car_rental.Entity.User;
 import com.dunhill.car_rental.Exceptions.NotFoundException;
 import com.dunhill.car_rental.mapper.UserMapper;
@@ -9,6 +12,7 @@ import com.dunhill.car_rental.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -35,10 +39,14 @@ public class UserService {
         userRepository.delete(found);
     }
 
-    public ResponseUserDto update(CreateUserDto createUserDto){
-        User found = userRepository.findByUsername(createUserDto.getUsername());
-        found = userMapper.update(createUserDto,found);
-        return userMapper.mapToDto(userRepository.save(found));
+    public ResponseUserDto update(Long id, CreateUserDto createUserDto) {
+        User user = userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
+        user.setUsername(createUserDto.getUsername());
+        user.setEmail(createUserDto.getEmail());
+        user.setPassword(createUserDto.getPassword());
+        user.setUpdatedAt(LocalDateTime.now());
+        user.setActive(createUserDto.isActive());
+        return userMapper.mapToDto(user);
     }
 
 }

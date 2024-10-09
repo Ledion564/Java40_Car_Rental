@@ -1,6 +1,8 @@
 package com.dunhill.car_rental.controller;
 
+import com.dunhill.car_rental.Dtos.CreateCategoryDto;
 import com.dunhill.car_rental.Dtos.CreateUserDto;
+import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
 import com.dunhill.car_rental.Dtos.ResponseUserDto;
 import com.dunhill.car_rental.service.UserService;
 import lombok.AllArgsConstructor;
@@ -27,9 +29,9 @@ public class UserController {
         return ResponseEntity.ok(userService.getAll());
     }
 
-    @PutMapping
-    public ResponseEntity<ResponseUserDto> update(CreateUserDto createUserDto){
-        return ResponseEntity.ok(userService.update(createUserDto));
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseUserDto> update(@PathVariable Long id, @RequestBody CreateUserDto createUserDto) {
+        return ResponseEntity.ok(userService.update(id, createUserDto));
     }
 
     @DeleteMapping("/delete")
