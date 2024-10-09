@@ -1,7 +1,9 @@
 package com.dunhill.car_rental.controller;
 
 import com.dunhill.car_rental.Dtos.CreateCarDto;
+import com.dunhill.car_rental.Dtos.CreateCategoryDto;
 import com.dunhill.car_rental.Dtos.ResponseCarDto;
+import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
 import com.dunhill.car_rental.service.CarService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,10 +29,12 @@ public class CarController {
     public ResponseEntity<List<ResponseCarDto>> getAll(){
         return ResponseEntity.ok(carService.getAll());
     }
-//    @PutMapping
-//    public ResponseEntity<ResponseCarDto> update(@RequestBody CreateCarDto createCarDto){
-//        return ResponseEntity.ok(carService.update(createCarDto));
-//    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseCarDto> update(@PathVariable Long id, @RequestBody CreateCarDto updateCarDto) {
+        return ResponseEntity.ok(carService.update(id, updateCarDto));
+    }
+
     @DeleteMapping("/delete")
     public ResponseEntity<Void> delete(@RequestParam("carId")Long id){
         carService.delete(id);

@@ -15,8 +15,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -66,5 +68,35 @@ public class CarServiceTest {
         verify(carRepository).delete(car);
     }
 
+    @Test
+    public void getAll(){
+        List<Car> cars= asList(new Car());
+        when(carRepository.findAll()).thenReturn(cars);
+        when(carMapper.mapToDto(any(Car.class))).thenReturn(responseCarDto);
+        carService.getAll();
 
+        verify(carRepository).findAll();
+        verify(carMapper).mapToDto(any(Car.class));
+    }
+
+    @Test
+    public void update() {
+        when(carRepository.findById(car.getId())).thenReturn(Optional.of(car));
+        when(carMapper.mapToDto(any(Car.class))).thenReturn(responseCarDto);
+        carService.update(car.getId(), createCarDto);
+        verify(carRepository).findById(car.getId());
+        verify(carMapper).mapToDto(any(Car.class));
+    }
+
+    @Test
+    public void search(){
+        List<Car> cars = asList(new Car());
+        when(carRepository.findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmount(car.getBrand(),car.getModel(),car.getBodyType(),car.getManufactureYear(),car.getColour(),car.getMileAge(),car.getAmount()))
+                .thenReturn(cars);
+        when(carMapper.mapToDto(any(Car.class))).thenReturn(responseCarDto);
+        carService.search(car.getBrand(),car.getModel(),car.getBodyType(),car.getManufactureYear(),car.getColour(),car.getMileAge(),car.getAmount());
+
+        verify(carRepository).findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmount(car.getBrand(),car.getModel(),car.getBodyType(),car.getManufactureYear(),car.getColour(),car.getMileAge(),car.getAmount());
+        verify(carMapper).mapToDto(any(Car.class));
+    }
 }

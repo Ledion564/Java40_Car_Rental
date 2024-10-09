@@ -60,5 +60,4 @@ public class Car {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
-
 }
