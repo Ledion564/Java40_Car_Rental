@@ -45,7 +45,7 @@ public class CategoryServiceTest {
         //global given
         category = Category.builder().id(1L).createdAt(LocalDateTime.now()).code("2004").username("emi").description("benz").categoryType("b class").priority(1).rating(10).build();
         createCategoryDto= CreateCategoryDto.builder().createdAt(LocalDateTime.now()).name("emi").description("benz").categoryType("b class").priority(1).rating(10).build();
-        responseCategoryDto = ResponseCategoryDto.builder().id(3L).createdAt(LocalDateTime.now()).name("emi").description("benz").categoryType("b class").priority(1).rating(10).build();
+        responseCategoryDto = ResponseCategoryDto.builder().id(1L).createdAt(LocalDateTime.now()).name("emi").description("benz").categoryType("b class").priority(1).rating(10).build();
     }
 
     @Test

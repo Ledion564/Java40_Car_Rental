@@ -45,15 +45,9 @@ public class CategoryService {
         return categoryMapper.mapToDto(savedCategory);
     }
 
-
-
-
     public void delete(Long id) {
         Category foundCategory = categoryRepository.findById(id).orElseThrow(()->new RuntimeException("Category not found"));
         categoryRepository.delete(foundCategory);
     }
 
-
-
-
-    }
+}
