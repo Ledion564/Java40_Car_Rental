@@ -56,8 +56,8 @@ public interface CarRepository extends JpaRepository<Car,Long> {
     List<Car> findByBodyType(String bodyType);
 
     //amount search
-    @Query("SELECT c FROM Car c WHERE c.amount=:amount")
-    List<Car> findByAmount(Long amount);
+//    @Query("SELECT c FROM Car c WHERE c.amount=:amount")
+//    List<Car> findByAmount(Long amount);
 
     //JQPL Query with parameters
     @Query("SELECT c FROM Car c WHERE c.model=:model")
