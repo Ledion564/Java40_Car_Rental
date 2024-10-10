@@ -47,6 +47,22 @@ CREATE TABLE IF NOT EXISTS Users(
     is_active BOOLEAN
 );
 
+CREATE TABLE IF NOT EXISTS Refund(
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+ dataOfReturn VARCHAR(100) NOT NULL,
+    surcharge VARCHAR(50) NOT NULL,
+    comments VARCHAR( 100) NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS Rental(
+ id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    internetDomain VARCHAR(100) NOT NULL,
+    contactAddress VARCHAR( 100) NOT NULL,
+    owner VARCHAR( 100) NOT NULL,
+    logotype VARCHAR( 100) NOT NULL
+    );
+
 CREATE TABLE IF NOT EXISTS revenues(
     id LONG AUTO_INCREMENT PRIMARY KEY,
     total_amount DOUBLE,
@@ -54,6 +70,7 @@ CREATE TABLE IF NOT EXISTS revenues(
     unapproved_amount DOUBLE
 
 );
+
 
 CREATE TABLE IF NOT EXISTS revenues(
     id LONG AUTO_INCREMENT PRIMARY KEY,

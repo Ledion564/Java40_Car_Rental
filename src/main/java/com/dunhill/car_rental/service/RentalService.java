@@ -40,4 +40,10 @@ public class RentalService {
         found = rentalMapper.update(createRentalDto, found);
         return rentalMapper.mapToDto(rentalRepository.save(found));
     }
+    public List<ResponseRentalDto> search(String name, String internetDomain, String contactAddress) {
+        List<Rental> rentals = rentalRepository.findByNameAndInternetDomainAndContactAddress(name, internetDomain, contactAddress);
+        return rentals.stream()
+                .map(rentalMapper::mapToDto).toList();
+    }
+
 }

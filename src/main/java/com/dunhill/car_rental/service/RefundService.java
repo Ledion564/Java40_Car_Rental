@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +23,7 @@ public class RefundService {
     private RefundRepository refundRepository;
     private RefundMapper refundMapper;
 
-    // Ruajtja e një Refund-i të ri
+
     public ResponseRefundDto save(CreateRefundDto createRefundDto){
         Refund refund = refundMapper.mapToEntity(createRefundDto);
         Refund savedRefund = refundRepository.save(refund);
@@ -29,9 +31,7 @@ public class RefundService {
     }
 
     public List<ResponseRefundDto> getAll(){
-        return refundRepository.findAll().stream()
-                .map(refundMapper::mapToDto)
-                .toList();
+        return refundRepository.findAll().stream().map(refundMapper::mapToDto).toList();
     }
 
     public void delete(long id){
@@ -45,6 +45,12 @@ public class RefundService {
                 .orElseThrow(() -> new NotFoundException("Refund not found!"));
         found = refundMapper.update(createRefundDto, found);
         return refundMapper.mapToDto(refundRepository.save(found));
+    }
+
+    public List<ResponseRefundDto> search(LocalDate dateOfReturn, BigDecimal surcharge,String comments){
+        return refundRepository.findByDateOfReturnAndSurchargeAndComments(dateOfReturn,surcharge,comments)
+                .stream().map(refundMapper::mapToDto).toList();
+
     }
 }
 
