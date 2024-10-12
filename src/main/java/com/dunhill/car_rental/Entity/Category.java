@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -45,7 +46,7 @@ public class Category {
     @Column(name = "is_active")
     private boolean isActive;
 
-    @Column(name = "code", nullable = false, unique = true)
+    @Column(name = "code")
     private String code;
 
     @PrePersist
@@ -58,4 +59,7 @@ public class Category {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Car> car;
 }

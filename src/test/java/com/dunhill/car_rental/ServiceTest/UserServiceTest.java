@@ -16,8 +16,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
+import static java.util.Arrays.asList;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -61,6 +63,17 @@ public class UserServiceTest {
         when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
         userService.delete(user.getId());
         verify(userRepository).delete(user);
+    }
+
+    @Test
+    public void getAll(){
+        List<User> users= asList(new User());
+        when(userRepository.findAll()).thenReturn(users);
+        when(userMapper.mapToDto(any(User.class))).thenReturn(responseUserDto);
+        userService.getAll();
+
+        verify(userRepository).findAll();
+        verify(userMapper).mapToDto(any(User.class));
     }
 
 }

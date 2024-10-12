@@ -1,6 +1,7 @@
 package com.dunhill.car_rental.Dtos;
 
 
+import com.dunhill.car_rental.Entity.Category;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -24,6 +25,9 @@ public class ResponseCarDto {
         private String createdBy;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
+        private Long categoryId;
+        private String categoryName;
+//        private Category category;
     }
 
 

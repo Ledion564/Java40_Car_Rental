@@ -45,4 +45,8 @@ public class Review {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "car_id")
+    private Car car;
 }

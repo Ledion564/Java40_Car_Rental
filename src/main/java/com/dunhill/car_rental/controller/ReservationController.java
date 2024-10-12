@@ -24,7 +24,7 @@ public class ReservationController {
     public ResponseEntity<List<ResponseReservationDto>> getAll(){
         return ResponseEntity.ok(reservationService.getAll());
     }
-    @PutMapping("/{id")
+    @PutMapping("/{id}")
     public ResponseEntity<ResponseReservationDto> update(@PathVariable Long id, @RequestBody CreateReservationDto updateReservationDto){
         return ResponseEntity.ok(reservationService.update(id, updateReservationDto));
     }

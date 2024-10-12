@@ -37,6 +37,8 @@ public class CarMapper {
         responseCarDto.setCreatedAt(car.getCreatedAt());
         responseCarDto.setCreatedBy(car.getCreatedBy());
         responseCarDto.setUpdatedAt(car.getUpdatedAt());
+        responseCarDto.setCategoryId(car.getCategory().getId());
+        responseCarDto.setCategoryName(car.getCategory().getUsername());
         return responseCarDto;
     }
     public Car update(CreateCarDto dto,Car car){
