@@ -1,13 +1,12 @@
 package com.dunhill.car_rental.service;
 
-import com.dunhill.car_rental.Dtos.CreateCarDto;
-import com.dunhill.car_rental.Dtos.CreateCategoryDto;
-import com.dunhill.car_rental.Dtos.ResponseCarDto;
-import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
+import com.dunhill.car_rental.Dtos.*;
 import com.dunhill.car_rental.Entity.Car;
 import com.dunhill.car_rental.Entity.Category;
+import com.dunhill.car_rental.Entity.Review;
 import com.dunhill.car_rental.Exceptions.NotFoundException;
 import com.dunhill.car_rental.mapper.CarMapper;
+import com.dunhill.car_rental.mapper.ReviewMapper;
 import com.dunhill.car_rental.repository.CarRepository;
 import com.dunhill.car_rental.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,6 +24,7 @@ public class CarService {
     private CarRepository carRepository;
     private CategoryRepository categoryRepository;
     private CarMapper carMapper;
+    private ReviewMapper reviewMapper;
 
     public ResponseCarDto save(CreateCarDto createCarDto){
         Category category = categoryRepository.findById(createCarDto.getCategoryId())
@@ -36,7 +37,16 @@ public class CarService {
     }
 
     public List<ResponseCarDto> getAll(){
-        return carRepository.findAll().stream().map(carMapper::mapToDto).toList();
+        List<Car> list = carRepository.findAll();
+        List<ResponseCarDto> responseCarDtos = new ArrayList<>();
+        for(Car car : list){
+            ResponseCarDto responseCarDto = carMapper.mapToDto(car);
+            List<Review> reviews =car.getReviewList();
+            responseCarDto.setReviews(reviews.stream().map(review -> reviewMapper.mapToDto(review)).toList());
+            responseCarDtos.add(responseCarDto);
+
+        }
+        return responseCarDtos;
     }
 
     public void delete(long id){

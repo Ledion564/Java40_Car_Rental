@@ -28,6 +28,8 @@ public class ReviewMapper {
         responseReviewDto.setCreatedBy(review.getCreatedBy());
         responseReviewDto.setCreatedAt(review.getCreatedAt());
         responseReviewDto.setUpdatedAt(review.getUpdatedAt());
+        responseReviewDto.setCarId(review.getCar().getId());
+        responseReviewDto.setCarName(review.getCar().getBrand());
         return responseReviewDto;
     }
 

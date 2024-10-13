@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,6 +28,7 @@ public class ResponseCarDto {
         private LocalDateTime updatedAt;
         private Long categoryId;
         private String categoryName;
+        private List<ResponseReviewDto> reviews;
 //        private Category category;
     }
 

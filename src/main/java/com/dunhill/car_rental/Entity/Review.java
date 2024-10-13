@@ -47,6 +47,6 @@ public class Review {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "car_id")
+    @JoinColumn(name = "car_id",nullable = false)
     private Car car;
 }

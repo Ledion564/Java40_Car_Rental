@@ -15,5 +15,8 @@ public class ResponseReviewDto {
     private String createdBy;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private Long carId;
+    private String carName;
+
 
 }
