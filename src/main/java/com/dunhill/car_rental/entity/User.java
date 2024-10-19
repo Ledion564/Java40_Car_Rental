@@ -34,6 +34,14 @@ public class User {
     inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "role_id"))
     private Set<Role> roles;
 
+    @OneToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    private Customer customer;
+
+    @OneToOne
+    @JoinColumn(name = "personel_id",referencedColumnName = "personel_id")
+    private Personel personel;
+
 //    @Column(name = "created_at", nullable = false, updatable = false)
 //    private LocalDateTime createdAt;
 //

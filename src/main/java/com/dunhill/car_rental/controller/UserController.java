@@ -6,6 +6,7 @@ import com.dunhill.car_rental.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class UserController {
 
     private UserService userService;
 
+    @PreAuthorize("hasAnyRole('ADMIN','HR')")
     @PostMapping
     public ResponseEntity<ResponseUserDto> save(@RequestBody CreateUserDto createUserDto){
         return ResponseEntity.ok(userService.save(createUserDto));
