@@ -2,6 +2,9 @@ package com.dunhill.car_rental.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Set;
@@ -20,12 +23,18 @@ public class User {
     @Column(name="user_id")
     private Long id;
 
+    @NotBlank(message = "Username cannot be blank")
+    @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters")
     @Column(name = "username")
     private String username;
 
+    @NotBlank(message = "Email cannot be blank")
+    @Email(message = "Email should be valid")
     @Column(name ="email")
     private String email;
 
+    @NotBlank(message = "Password cannot be blank")
+    @Size(min = 8, message = "Password must be at least 8 characters")
     @Column(name="password")
     private String password;
 
