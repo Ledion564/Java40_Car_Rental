@@ -3,6 +3,7 @@ package com.dunhill.car_rental.controller;
 import com.dunhill.car_rental.dtos.CreateCarDto;
 import com.dunhill.car_rental.dtos.ResponseCarDto;
 import com.dunhill.car_rental.service.CarService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseCarDto> save(@RequestBody CreateCarDto createCarDto){
+    public ResponseEntity<ResponseCarDto> save(@Valid @RequestBody CreateCarDto createCarDto){
         return ResponseEntity.ok(carService.save(createCarDto));
     }
     @PreAuthorize("hasRole('USER')")
