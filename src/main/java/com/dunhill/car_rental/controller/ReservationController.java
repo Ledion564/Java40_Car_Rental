@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.controller;
 
-import com.dunhill.car_rental.Dtos.CreateReservationDto;
-import com.dunhill.car_rental.Dtos.ResponseReservationDto;
+import com.dunhill.car_rental.dtos.CreateReservationDto;
+import com.dunhill.car_rental.dtos.ResponseReservationDto;
 import com.dunhill.car_rental.service.ReservationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

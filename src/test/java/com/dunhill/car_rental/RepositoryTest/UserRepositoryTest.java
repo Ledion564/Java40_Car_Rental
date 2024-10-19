@@ -1,7 +1,6 @@
 package com.dunhill.car_rental.RepositoryTest;
 
-import com.dunhill.car_rental.Entity.Car;
-import com.dunhill.car_rental.Entity.User;
+import com.dunhill.car_rental.entity.User;
 import com.dunhill.car_rental.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,12 +23,12 @@ public class UserRepositoryTest {
     private User user2;
     private User user3;
 
-    @BeforeEach
-    void setup(){
-        user1= User.builder().id(1L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
-        user2= User.builder().id(2L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
-        user3= User.builder().id(3L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
-    }
+//    @BeforeEach
+//    void setup(){
+//        user1= User.builder().id(1L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
+//        user2= User.builder().id(2L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
+//        user3= User.builder().id(3L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
+//    }
 
     @Test
     public  void testSave(){

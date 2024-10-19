@@ -1,19 +1,21 @@
 package com.dunhill.car_rental.service;
 
-import com.dunhill.car_rental.Dtos.CreateCategoryDto;
-import com.dunhill.car_rental.Dtos.CreateUserDto;
-import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
-import com.dunhill.car_rental.Dtos.ResponseUserDto;
-import com.dunhill.car_rental.Entity.Category;
-import com.dunhill.car_rental.Entity.User;
-import com.dunhill.car_rental.Exceptions.NotFoundException;
+import com.dunhill.car_rental.dtos.CreateUserDto;
+import com.dunhill.car_rental.dtos.ResponseUserDto;
+import com.dunhill.car_rental.entity.Role;
+import com.dunhill.car_rental.entity.User;
+import com.dunhill.car_rental.exceptions.NotFoundException;
 import com.dunhill.car_rental.mapper.UserMapper;
+import com.dunhill.car_rental.repository.RoleRepository;
 import com.dunhill.car_rental.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -21,9 +23,19 @@ public class UserService {
 
     private UserRepository userRepository;
     private UserMapper userMapper;
+    private PasswordEncoder passwordEncoder;
+    private RoleRepository roleRepository;
 
-    public ResponseUserDto save(CreateUserDto createUserDto){
+    public ResponseUserDto save(CreateUs        erDto createUserDto){
+
+        Set<String> roles = createUserDto.getRoles();
+        Set<Role> roleSet = new HashSet<>();
+        for (String role : roles) {
+            roleSet.add(roleRepository.findByRole(role).orElseThrow(()->new NotFoundException("Role not found")));
+        }
         User user = userMapper.mapToEntity(createUserDto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(roleSet);
         User saved = userRepository.save(user);
         ResponseUserDto responseUserDto = userMapper.mapToDto(saved);
         return responseUserDto;
@@ -43,9 +55,9 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
         user.setUsername(createUserDto.getUsername());
         user.setEmail(createUserDto.getEmail());
-        user.setPassword(createUserDto.getPassword());
-        user.setUpdatedAt(LocalDateTime.now());
-        user.setActive(createUserDto.isActive());
+        user.setPassword(passwordEncoder.encode(createUserDto.getPassword()));
+//        user.setUpdatedAt(LocalDateTime.now());
+//        user.setActive(createUserDto.isActive());
         return userMapper.mapToDto(user);
     }
 

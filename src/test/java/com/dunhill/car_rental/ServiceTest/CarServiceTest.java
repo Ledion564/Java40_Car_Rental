@@ -1,12 +1,11 @@
 package com.dunhill.car_rental.ServiceTest;
 
-import com.dunhill.car_rental.Dtos.CreateCarDto;
-import com.dunhill.car_rental.Dtos.ResponseCarDto;
-import com.dunhill.car_rental.Entity.Car;
+import com.dunhill.car_rental.dtos.CreateCarDto;
+import com.dunhill.car_rental.dtos.ResponseCarDto;
+import com.dunhill.car_rental.entity.Car;
 import com.dunhill.car_rental.mapper.CarMapper;
 import com.dunhill.car_rental.repository.CarRepository;
 import com.dunhill.car_rental.service.CarService;
-import org.h2.command.dml.MergeUsing;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

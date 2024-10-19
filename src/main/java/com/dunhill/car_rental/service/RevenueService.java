@@ -1,8 +1,8 @@
 package com.dunhill.car_rental.service;
 
-import com.dunhill.car_rental.Dtos.CreateRevenueDto;
-import com.dunhill.car_rental.Dtos.ResponseRevenueDto;
-import com.dunhill.car_rental.Entity.Revenue;
+import com.dunhill.car_rental.dtos.CreateRevenueDto;
+import com.dunhill.car_rental.dtos.ResponseRevenueDto;
+import com.dunhill.car_rental.entity.Revenue;
 import com.dunhill.car_rental.mapper.RevenueMapper;
 import com.dunhill.car_rental.repository.RevenueRepository;
 import lombok.AllArgsConstructor;

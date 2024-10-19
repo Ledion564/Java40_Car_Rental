@@ -1,6 +1,6 @@
 package com.dunhill.car_rental.RepositoryTest;
 
-import com.dunhill.car_rental.Entity.Rental;
+import com.dunhill.car_rental.entity.Rental;
 import com.dunhill.car_rental.repository.RentalRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,8 @@
 package com.dunhill.car_rental.mapper;
 
-import com.dunhill.car_rental.Dtos.CreateUserDto;
-import com.dunhill.car_rental.Dtos.ResponseUserDto;
-import com.dunhill.car_rental.Entity.User;
+import com.dunhill.car_rental.dtos.CreateUserDto;
+import com.dunhill.car_rental.dtos.ResponseUserDto;
+import com.dunhill.car_rental.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -15,8 +15,8 @@ public class UserMapper {
         user.setUsername(createUserDto.getUsername());
         user.setEmail(createUserDto.getEmail());
         user.setPassword(createUserDto.getPassword());
-        user.setCreatedAt(LocalDateTime.now());
-        user.setActive(true);
+//        user.setCreatedAt(LocalDateTime.now());
+//        user.setActive(true);
         return user;
     }
 
@@ -26,9 +26,10 @@ public class UserMapper {
         responseUserDto.setUsername(user.getUsername());
         responseUserDto.setEmail(user.getEmail());
         responseUserDto.setPassword(user.getPassword());
-        responseUserDto.setCreatedAt(user.getCreatedAt());
-        responseUserDto.setUpdatedAt(user.getUpdatedAt());
-        responseUserDto.setActive(user.isActive());
+        responseUserDto.setRoles(user.getRoles());
+//        responseUserDto.setCreatedAt(user.getCreatedAt());
+//        responseUserDto.setUpdatedAt(user.getUpdatedAt());
+//        responseUserDto.setActive(user.isActive());
         return responseUserDto;
     }
 
@@ -36,8 +37,8 @@ public class UserMapper {
         user.setUsername(createUserDto.getUsername());
         user.setEmail(createUserDto.getEmail());
         user.setPassword(createUserDto.getPassword());
-        user.setUpdatedAt(LocalDateTime.now());
-        user.setActive(createUserDto.isActive());
+//        user.setUpdatedAt(LocalDateTime.now());
+//        user.setActive(createUserDto.isActive());
         return user;
     }
 }

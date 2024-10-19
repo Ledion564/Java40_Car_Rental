@@ -2,9 +2,9 @@ package com.dunhill.car_rental.ServiceTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.dunhill.car_rental.Dtos.CreateRentalDto;
-import com.dunhill.car_rental.Dtos.ResponseRentalDto;
-import com.dunhill.car_rental.Entity.Rental;
+import com.dunhill.car_rental.dtos.CreateRentalDto;
+import com.dunhill.car_rental.dtos.ResponseRentalDto;
+import com.dunhill.car_rental.entity.Rental;
 import com.dunhill.car_rental.mapper.RentalMapper;
 import com.dunhill.car_rental.repository.RentalRepository;
 import com.dunhill.car_rental.service.RentalService;
@@ -20,8 +20,6 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class RentalServiceTest {

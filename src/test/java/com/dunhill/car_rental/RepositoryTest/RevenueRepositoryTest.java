@@ -1,13 +1,12 @@
 package com.dunhill.car_rental.RepositoryTest;
 
-import com.dunhill.car_rental.Entity.Revenue;
+import com.dunhill.car_rental.entity.Revenue;
 import com.dunhill.car_rental.repository.RevenueRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;

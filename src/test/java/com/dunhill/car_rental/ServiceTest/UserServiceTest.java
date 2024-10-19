@@ -1,10 +1,8 @@
 package com.dunhill.car_rental.ServiceTest;
 
-import com.dunhill.car_rental.Dtos.CreateCarDto;
-import com.dunhill.car_rental.Dtos.CreateUserDto;
-import com.dunhill.car_rental.Dtos.ResponseUserDto;
-import com.dunhill.car_rental.Entity.Car;
-import com.dunhill.car_rental.Entity.User;
+import com.dunhill.car_rental.dtos.CreateUserDto;
+import com.dunhill.car_rental.dtos.ResponseUserDto;
+import com.dunhill.car_rental.entity.User;
 import com.dunhill.car_rental.mapper.UserMapper;
 import com.dunhill.car_rental.repository.UserRepository;
 import com.dunhill.car_rental.service.UserService;
@@ -40,12 +38,12 @@ public class UserServiceTest {
     private ResponseUserDto responseUserDto;
     private CreateUserDto createUserDto;
 
-    @BeforeEach
-    void setup(){
-        user= User.builder().id(1L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
-        responseUserDto= ResponseUserDto.builder().id(1L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
-        createUserDto= CreateUserDto.builder().username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
-    }
+//    @BeforeEach
+//    void setup(){
+//        user= User.builder().id(1L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
+//        responseUserDto= ResponseUserDto.builder().id(1L).username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
+//        createUserDto= CreateUserDto.builder().username("ferit").email("gmail").password("bro").createdAt(LocalDateTime.now()).build();
+//    }
 
     @Test
     public void save(){

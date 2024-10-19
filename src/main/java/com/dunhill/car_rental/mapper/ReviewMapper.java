@@ -1,9 +1,8 @@
 package com.dunhill.car_rental.mapper;
 
-import com.dunhill.car_rental.Dtos.CreateReviewDto;
-import com.dunhill.car_rental.Dtos.ResponseReviewDto;
-import com.dunhill.car_rental.Entity.Review;
-import org.springframework.cglib.core.Local;
+import com.dunhill.car_rental.dtos.CreateReviewDto;
+import com.dunhill.car_rental.dtos.ResponseReviewDto;
+import com.dunhill.car_rental.entity.Review;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

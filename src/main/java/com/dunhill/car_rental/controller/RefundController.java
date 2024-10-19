@@ -1,11 +1,9 @@
 package com.dunhill.car_rental.controller;
 
-import com.dunhill.car_rental.Dtos.CreateRefundDto;
-import com.dunhill.car_rental.Dtos.ResponseRefundDto;
-import com.dunhill.car_rental.Entity.Refund;
+import com.dunhill.car_rental.dtos.CreateRefundDto;
+import com.dunhill.car_rental.dtos.ResponseRefundDto;
 import com.dunhill.car_rental.service.RefundService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

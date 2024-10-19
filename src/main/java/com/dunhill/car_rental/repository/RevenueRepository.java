@@ -1,6 +1,6 @@
 package com.dunhill.car_rental.repository;
 
-import com.dunhill.car_rental.Entity.Revenue;
+import com.dunhill.car_rental.entity.Revenue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

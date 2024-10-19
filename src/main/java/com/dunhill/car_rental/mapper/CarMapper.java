@@ -1,8 +1,8 @@
 package com.dunhill.car_rental.mapper;
 
-import com.dunhill.car_rental.Dtos.CreateCarDto;
-import com.dunhill.car_rental.Dtos.ResponseCarDto;
-import com.dunhill.car_rental.Entity.Car;
+import com.dunhill.car_rental.dtos.CreateCarDto;
+import com.dunhill.car_rental.dtos.ResponseCarDto;
+import com.dunhill.car_rental.entity.Car;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

@@ -1,14 +1,12 @@
 package com.dunhill.car_rental.repository;
 
-import com.dunhill.car_rental.Entity.Car;
-import com.dunhill.car_rental.Entity.Revenue;
+import com.dunhill.car_rental.entity.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface CarRepository extends JpaRepository<Car,Long> {
 

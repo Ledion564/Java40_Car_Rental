@@ -1,9 +1,9 @@
 package com.dunhill.car_rental.service;
 
-import com.dunhill.car_rental.Dtos.CreateReservationDto;
-import com.dunhill.car_rental.Dtos.ResponseReservationDto;
-import com.dunhill.car_rental.Entity.Reservation;
-import com.dunhill.car_rental.Exceptions.NotFoundException;
+import com.dunhill.car_rental.dtos.CreateReservationDto;
+import com.dunhill.car_rental.dtos.ResponseReservationDto;
+import com.dunhill.car_rental.entity.Reservation;
+import com.dunhill.car_rental.exceptions.NotFoundException;
 import com.dunhill.car_rental.mapper.ReservationMapper;
 import com.dunhill.car_rental.repository.ReservationRepository;
 import lombok.AllArgsConstructor;

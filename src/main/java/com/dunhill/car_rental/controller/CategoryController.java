@@ -2,8 +2,8 @@ package com.dunhill.car_rental.controller;
 
 
 
-import com.dunhill.car_rental.Dtos.CreateCategoryDto;
-import com.dunhill.car_rental.Dtos.ResponseCategoryDto;
+import com.dunhill.car_rental.dtos.CreateCategoryDto;
+import com.dunhill.car_rental.dtos.ResponseCategoryDto;
 import com.dunhill.car_rental.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

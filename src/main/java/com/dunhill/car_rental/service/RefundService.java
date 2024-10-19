@@ -1,20 +1,17 @@
 package com.dunhill.car_rental.service;
 
-import com.dunhill.car_rental.Dtos.CreateRefundDto;
-import com.dunhill.car_rental.Dtos.ResponseRefundDto;
-import com.dunhill.car_rental.Entity.Refund;
-import com.dunhill.car_rental.Exceptions.NotFoundException;
+import com.dunhill.car_rental.dtos.CreateRefundDto;
+import com.dunhill.car_rental.dtos.ResponseRefundDto;
+import com.dunhill.car_rental.entity.Refund;
+import com.dunhill.car_rental.exceptions.NotFoundException;
 import com.dunhill.car_rental.mapper.RefundMapper;
 import com.dunhill.car_rental.repository.RefundRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Service

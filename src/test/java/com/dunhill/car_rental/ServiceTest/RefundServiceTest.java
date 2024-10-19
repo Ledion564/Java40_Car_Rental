@@ -1,8 +1,8 @@
 package com.dunhill.car_rental.ServiceTest;
 
-import com.dunhill.car_rental.Dtos.CreateRefundDto;
-import com.dunhill.car_rental.Dtos.ResponseRefundDto;
-import com.dunhill.car_rental.Entity.Refund;
+import com.dunhill.car_rental.dtos.CreateRefundDto;
+import com.dunhill.car_rental.dtos.ResponseRefundDto;
+import com.dunhill.car_rental.entity.Refund;
 import com.dunhill.car_rental.mapper.RefundMapper;
 import com.dunhill.car_rental.repository.RefundRepository;
 import com.dunhill.car_rental.service.RefundService;
@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.util.Arrays.asList;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
