@@ -40,8 +40,8 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers(HttpMethod.GET, "/car/all").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/auth/login").permitAll()
-//                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
         return http.build();
