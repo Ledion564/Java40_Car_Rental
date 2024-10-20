@@ -16,7 +16,7 @@ public class CreateUserDto {
     private String username;
     private String email;
     private String password;
-//    private Set<String> roles;
+    private Set<String> roles;
 //    private LocalDateTime createdAt;
 //    private LocalDateTime updatedAt;
 //    private boolean isActive;
