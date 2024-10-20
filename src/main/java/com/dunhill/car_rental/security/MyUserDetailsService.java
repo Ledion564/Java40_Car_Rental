@@ -21,10 +21,13 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+//
+//        User existingUser = userRepository.findByUsername(username)
+//                .orElseThrow(() -> new UsernameNotFoundException(username));
 
-        User existingUser = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username));
+        User existingUser = userRepository.findByUsernameOrEmail(usernameOrEmail,usernameOrEmail)
+                .orElseThrow(() -> new UsernameNotFoundException(usernameOrEmail));
 
 
 //        Set<GrantedAuthority> authorities = existingUser.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toSet());
@@ -33,4 +36,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
 //        return new  org.springframework.security.core.userdetails.User(existingUser.getUsername(),existingUser.getPassword(),authorities);
     }
+
+
 }

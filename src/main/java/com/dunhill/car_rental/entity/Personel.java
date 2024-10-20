@@ -9,19 +9,16 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table
-public class Customer {
+@Table(name = "personels")
+public class Personel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
+    @Column(name = "personel_id")
     private Long id;
 
     private String firstName;
     private String lastName;
     private String email;
     private String address;
-
-//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-//    private List<Reservation> reservations;
-
- }
+}

@@ -1,5 +1,7 @@
 package com.dunhill.car_rental.configuration;
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +23,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @AllArgsConstructor
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
+@SecurityScheme(name = "basicAuth", type = SecuritySchemeType.HTTP, scheme = "basic")
 public class SecurityConfiguration {
 
     private UserDetailsService userDetailsService;
@@ -37,7 +40,8 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers(HttpMethod.GET, "/car/all").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/login").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
         return http.build();

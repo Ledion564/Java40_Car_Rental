@@ -25,12 +25,12 @@ public class User {
 
     @NotBlank(message = "Username cannot be blank")
     @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters")
-    @Column(name = "username")
+    @Column(name = "username",unique = true, nullable = false, length = 50)
     private String username;
 
     @NotBlank(message = "Email cannot be blank")
     @Email(message = "Email should be valid")
-    @Column(name ="email")
+    @Column(name ="email",unique = true, nullable = false, length = 50)
     private String email;
 
     @NotBlank(message = "Password cannot be blank")
@@ -42,6 +42,14 @@ public class User {
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "user_id"),
     inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "role_id"))
     private Set<Role> roles;
+
+    @OneToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    private Customer customer;
+
+    @OneToOne
+    @JoinColumn(name = "personel_id",referencedColumnName = "personel_id")
+    private Personel personel;
 
 //    @Column(name = "created_at", nullable = false, updatable = false)
 //    private LocalDateTime createdAt;
