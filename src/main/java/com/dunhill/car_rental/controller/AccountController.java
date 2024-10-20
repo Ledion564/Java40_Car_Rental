@@ -1,6 +1,7 @@
 package com.dunhill.car_rental.controller;
 
 import com.dunhill.car_rental.dtos.CreateCustomerDto;
+import com.dunhill.car_rental.dtos.CreatePersonelDto;
 import com.dunhill.car_rental.dtos.CreateUserDto;
 import com.dunhill.car_rental.dtos.LoginDto;
 import com.dunhill.car_rental.service.AccountService;
@@ -29,6 +30,8 @@ public class AccountController {
     }
 
     @PostMapping("/personel")
-public ResponseEntity<>
+    public ResponseEntity<String> registerPersonel(@RequestBody CreatePersonelDto createPersonelDto){
+        return ResponseEntity.ok(accountService.registerPersonel(createPersonelDto));
+    }
 
 }
