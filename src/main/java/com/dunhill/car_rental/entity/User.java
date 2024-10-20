@@ -25,12 +25,12 @@ public class User {
 
     @NotBlank(message = "Username cannot be blank")
     @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters")
-    @Column(name = "username")
+    @Column(name = "username",unique = true, nullable = false, length = 50)
     private String username;
 
     @NotBlank(message = "Email cannot be blank")
     @Email(message = "Email should be valid")
-    @Column(name ="email")
+    @Column(name ="email",unique = true, nullable = false, length = 50)
     private String email;
 
     @NotBlank(message = "Password cannot be blank")
