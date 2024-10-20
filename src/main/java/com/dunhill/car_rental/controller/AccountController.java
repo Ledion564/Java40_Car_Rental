@@ -7,6 +7,7 @@ import com.dunhill.car_rental.dtos.LoginDto;
 import com.dunhill.car_rental.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ public class AccountController {
         return ResponseEntity.ok(accountService.register(createCustomerDto));
     }
 
+    @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/personel")
     public ResponseEntity<String> registerPersonel(@RequestBody CreatePersonelDto createPersonelDto){
         return ResponseEntity.ok(accountService.registerPersonel(createPersonelDto));

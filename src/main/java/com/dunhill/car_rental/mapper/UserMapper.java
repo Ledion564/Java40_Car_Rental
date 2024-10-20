@@ -13,7 +13,7 @@ public class UserMapper {
     public User mapToEntity(CreateUserDto createUserDto){
         User user = new User();
         user.setUsername(createUserDto.getUsername());
-        user.setEmail(createUserDto.getEmail());
+//        user.setEmail(createUserDto.getEmail());
         user.setPassword(createUserDto.getPassword());
 //        user.setCreatedAt(LocalDateTime.now());
 //        user.setActive(true);
@@ -24,7 +24,7 @@ public class UserMapper {
         ResponseUserDto responseUserDto = new ResponseUserDto();
         responseUserDto.setId(user.getId());
         responseUserDto.setUsername(user.getUsername());
-        responseUserDto.setEmail(user.getEmail());
+//        responseUserDto.setEmail(user.getEmail());
         responseUserDto.setPassword(user.getPassword());
         responseUserDto.setRoles(user.getRoles());
 //        responseUserDto.setCreatedAt(user.getCreatedAt());
@@ -35,7 +35,7 @@ public class UserMapper {
 
     public User update(CreateUserDto createUserDto, User user){
         user.setUsername(createUserDto.getUsername());
-        user.setEmail(createUserDto.getEmail());
+//        user.setEmail(createUserDto.getEmail());
         user.setPassword(createUserDto.getPassword());
 //        user.setUpdatedAt(LocalDateTime.now());
 //        user.setActive(createUserDto.isActive());
