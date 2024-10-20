@@ -54,7 +54,7 @@ public class UserService {
     public ResponseUserDto update(Long id, CreateUserDto createUserDto) {
         User user = userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
         user.setUsername(createUserDto.getUsername());
-//        user.setEmail(createUserDto.getEmail());
+        user.setEmail(createUserDto.getEmail());
         user.setPassword(passwordEncoder.encode(createUserDto.getPassword()));
 //        user.setUpdatedAt(LocalDateTime.now());
 //        user.setActive(createUserDto.isActive());

@@ -28,10 +28,10 @@ public class User {
     @Column(name = "username",unique = true, nullable = false, length = 50)
     private String username;
 
-//    @NotBlank(message = "Email cannot be blank")
-//    @Email(message = "Email should be valid")
-//    @Column(name ="email",unique = true, nullable = false, length = 50)
-//    private String email;
+    @NotBlank(message = "Email cannot be blank")
+    @Email(message = "Email should be valid")
+    @Column(name ="email",unique = true, nullable = false, length = 50)
+    private String email;
 
     @NotBlank(message = "Password cannot be blank")
     @Size(min = 8, message = "Password must be at least 8 characters")
