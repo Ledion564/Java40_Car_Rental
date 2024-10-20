@@ -42,6 +42,7 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.GET, "/car/all").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
         return http.build();
