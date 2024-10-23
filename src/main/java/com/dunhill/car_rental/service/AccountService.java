@@ -78,7 +78,7 @@ public class AccountService {
         User user = new User();
         user.setUsername(createPersonelDto.getUsername());
         user.setPassword(passwordEncoder.encode(createPersonelDto.getPassword()));
-//        user.setEmail(createPersonelDto.getEmail());
+        user.setEmail(createPersonelDto.getEmail());
         user.setPersonel(savedPersonel);
         Set<Role> roleSet = new HashSet<>();
         Role personelRole = roleRepository.findByRole("ROLE_HR")
