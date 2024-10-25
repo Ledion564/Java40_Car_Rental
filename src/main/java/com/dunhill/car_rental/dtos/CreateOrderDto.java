@@ -1,5 +1,8 @@
 package com.dunhill.car_rental.dtos;
 
+import com.dunhill.car_rental.entity.enums.OrderStatus;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +21,9 @@ public class CreateOrderDto {
     private String lastName;
     private String phone;
     private String address;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     private List<OrderCarDto> orderCars;
 

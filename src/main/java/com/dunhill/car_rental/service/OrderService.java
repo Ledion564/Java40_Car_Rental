@@ -9,6 +9,7 @@ import com.dunhill.car_rental.mapper.CategoryMapper;
 import com.dunhill.car_rental.repository.CarRepository;
 import com.dunhill.car_rental.repository.CustomerRepository;
 import com.dunhill.car_rental.repository.OrderRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,15 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class OrderService {
 
-    @Autowired
+
     private OrderRepository orderRepository;
-
-    @Autowired
     private CustomerRepository customerRepository;
-
-    @Autowired
     private CarRepository carRepository;
 
     @Transactional
