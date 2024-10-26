@@ -1,6 +1,6 @@
 package com.dunhill.car_rental.dtos;
 
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,10 +9,18 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@Schema(description = "Data transfer object for creating a new reservation")
 public class CreateReservationDto {
-    private LocalDate dateOfBooking;
-    private LocalDate dateFrom;
-    private LocalDate dateTo;
-    private BigDecimal amount;
 
+    @Schema(description = "Date of booking", example = "2024-10-26", required = true)
+    private LocalDate dateOfBooking;
+
+    @Schema(description = "Start date of the reservation", example = "2024-11-01", required = true)
+    private LocalDate dateFrom;
+
+    @Schema(description = "End date of the reservation", example = "2024-11-05", required = true)
+    private LocalDate dateTo;
+
+    @Schema(description = "Total amount for the reservation", example = "200.00", required = true)
+    private BigDecimal amount;
 }
