@@ -26,20 +26,20 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     private RoleRepository roleRepository;
 
-    public ResponseUserDto save(CreateUserDto createUserDto){
-
-        Set<String> roles = createUserDto.getRoles();
-        Set<Role> roleSet = new HashSet<>();
-        for (String role : roles) {
-            roleSet.add(roleRepository.findByRole(role).orElseThrow(()->new NotFoundException("Role not found")));
-        }
-        User user = userMapper.mapToEntity(createUserDto);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(roleSet);
-        User saved = userRepository.save(user);
-        ResponseUserDto responseUserDto = userMapper.mapToDto(saved);
-        return responseUserDto;
-    }
+//    public ResponseUserDto save(CreateUserDto createUserDto){
+//
+//        Set<String> roles = createUserDto.getRoles();
+//        Set<Role> roleSet = new HashSet<>();
+//        for (String role : roles) {
+//            roleSet.add(roleRepository.findByRole(role).orElseThrow(()->new NotFoundException("Role not found")));
+//        }
+//        User user = userMapper.mapToEntity(createUserDto);
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.setRoles(roleSet);
+//        User saved = userRepository.save(user);
+//        ResponseUserDto responseUserDto = userMapper.mapToDto(saved);
+//        return responseUserDto;
+//    }
 
     public List<ResponseUserDto> getAll(){
         return userRepository.findAll().stream().map(userMapper::mapToDto).toList();

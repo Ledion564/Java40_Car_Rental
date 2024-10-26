@@ -37,7 +37,6 @@ public class AccountService {
     public String login(LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         return "User logged in successfully";
     }
 
@@ -50,11 +49,10 @@ public class AccountService {
         customer.setAddress( createCustomerDto.getAddress());
         Customer savedCustomer = customerRepository.save(customer);
 
-
         User user = new User();
         user.setUsername(createCustomerDto.getUsername());
         user.setPassword(passwordEncoder.encode(createCustomerDto.getPassword()));
-//        user.setEmail(createCustomerDto.getEmail());
+        user.setEmail(createCustomerDto.getEmail());
         Set<Role> roles = new HashSet<>();
         Role roleCustomer = roleRepository.findByRole("ROLE_CUSTOMER")
                 .orElseThrow(() -> new RuntimeException("Role not found"));

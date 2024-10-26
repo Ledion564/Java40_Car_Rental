@@ -43,7 +43,7 @@ public class User {
     inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "role_id"))
     private Set<Role> roles;
 
-    @OneToOne
+    @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customer;
 

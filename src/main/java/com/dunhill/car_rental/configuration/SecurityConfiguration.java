@@ -41,8 +41,13 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers(HttpMethod.GET, "/car/all").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/category").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/car").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").permitAll()
                         .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/orders").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
 //                        .requestMatchers(HttpMethod.POST,"/auth/personel").permitAll()
                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());

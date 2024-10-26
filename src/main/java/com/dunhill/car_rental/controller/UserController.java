@@ -17,10 +17,10 @@ public class UserController {
 
     private UserService userService;
 
-    @PostMapping
-    public ResponseEntity<ResponseUserDto> save(@RequestBody CreateUserDto createUserDto){
-        return ResponseEntity.ok(userService.save(createUserDto));
-    }
+//    @PostMapping
+//    public ResponseEntity<ResponseUserDto> save(@RequestBody CreateUserDto createUserDto){
+//        return ResponseEntity.ok(userService.save(createUserDto));
+//    }
 
     @GetMapping("/all")
     public ResponseEntity<List<ResponseUserDto>> getAll(){
