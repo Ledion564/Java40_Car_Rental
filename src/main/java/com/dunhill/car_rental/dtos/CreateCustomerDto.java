@@ -5,11 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Schema(description = "Data transfer object for creating a new customer")
 public class CreateCustomerDto extends CreateUserDto {
 
