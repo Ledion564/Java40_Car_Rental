@@ -2,6 +2,7 @@ package com.dunhill.car_rental.controller;
 import com.dunhill.car_rental.dtos.CreateOrderDto;
 import com.dunhill.car_rental.entity.Order;
 import com.dunhill.car_rental.service.OrderService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class OrderController {
 
     private OrderService orderService;
 
+    @SecurityRequirement(name = "basicAuth")
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody CreateOrderDto createOrderDTO) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
