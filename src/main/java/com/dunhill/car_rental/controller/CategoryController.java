@@ -19,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/category")
 @RestController
+@Tag(name = "CRUD REST APIs for Category Resource")
 public class CategoryController {
 
     private  CategoryService categoryService;
