@@ -1,4 +1,4 @@
-package com.dunhill.car_rental.dtos;
+package com.dunhill.car_rental.dtos.resevationDto;
 
 import lombok.Getter;
 import lombok.Setter;

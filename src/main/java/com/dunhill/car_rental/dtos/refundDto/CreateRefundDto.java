@@ -1,4 +1,4 @@
-package com.dunhill.car_rental.dtos;
+package com.dunhill.car_rental.dtos.refundDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;

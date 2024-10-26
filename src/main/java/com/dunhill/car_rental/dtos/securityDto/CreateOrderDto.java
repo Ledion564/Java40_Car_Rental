@@ -1,4 +1,4 @@
-package com.dunhill.car_rental.dtos;
+package com.dunhill.car_rental.dtos.securityDto;
 
 import com.dunhill.car_rental.entity.enums.OrderStatus;
 import io.swagger.v3.oas.annotations.media.Schema;

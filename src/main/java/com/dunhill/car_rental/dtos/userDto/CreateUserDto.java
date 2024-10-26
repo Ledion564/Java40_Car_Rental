@@ -1,11 +1,8 @@
-package com.dunhill.car_rental.dtos;
+package com.dunhill.car_rental.dtos.userDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-
-import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter

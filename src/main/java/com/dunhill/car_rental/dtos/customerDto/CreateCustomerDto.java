@@ -1,8 +1,8 @@
-package com.dunhill.car_rental.dtos;
+package com.dunhill.car_rental.dtos.customerDto;
 
+import com.dunhill.car_rental.dtos.userDto.CreateUserDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
