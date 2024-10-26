@@ -41,7 +41,7 @@ public class Car {
     private String status;
 
     @Column(name = "amount")
-    private Long amount;
+    private Double amount;
 
     @Column(name = "created_by")
     private String createdBy;

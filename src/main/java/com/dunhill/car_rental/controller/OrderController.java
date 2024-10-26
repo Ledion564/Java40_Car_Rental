@@ -1,5 +1,6 @@
 package com.dunhill.car_rental.controller;
 import com.dunhill.car_rental.dtos.CreateOrderDto;
+import com.dunhill.car_rental.dtos.Invoice;
 import com.dunhill.car_rental.entity.Order;
 import com.dunhill.car_rental.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -67,5 +68,11 @@ public class OrderController {
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
             orderService.deleteOrder(id);
             return ResponseEntity.noContent().build();
+        }
+
+
+        @GetMapping
+        public ResponseEntity<Invoice> getOrderInvoice(@PathVariable Long id){
+        return ResponseEntity.ok(orderService.getOrderInoice(id));
         }
 }

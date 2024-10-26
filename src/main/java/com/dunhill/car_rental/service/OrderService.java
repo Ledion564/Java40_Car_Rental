@@ -1,4 +1,6 @@
 package com.dunhill.car_rental.service;
+import com.dunhill.car_rental.dtos.CarDetails;
+import com.dunhill.car_rental.dtos.Invoice;
 import com.dunhill.car_rental.entity.*;
 import com.dunhill.car_rental.dtos.CreateOrderDto;
 import com.dunhill.car_rental.entity.enums.OrderStatus;
@@ -11,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +26,7 @@ public class OrderService {
 
     private OrderRepository orderRepository;
     private UserRepository userRepository;
-    private UserCustomerRepository userCustomerRepository;
+    private OrderCarRepository orderCarRepository;
     private CustomerRepository customerRepository;
     private CarRepository carRepository;
 
@@ -73,12 +76,57 @@ public class OrderService {
         order.setOrderCars(orderCarsList);
         return orderRepository.save(order);
     }
+    private BigDecimal calculateTotal(List<CarDetails> carDetails) {
+        BigDecimal total = BigDecimal.ZERO;
+
+        for (CarDetails carDetail : carDetails) {
+            total = total.add(BigDecimal.valueOf(carDetail.getPrice()).multiply(BigDecimal.valueOf(carDetail.getQuantity())));
+        }
+        return total;
+    }
 
 
     // Method to get all orders
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
+
+    private List<CarDetails> getCarsDetails(Order order) {
+        List<CarDetails> carsDetails = new ArrayList<>();
+        List<OrderCars> cars = orderCarRepository.findByOrderId(order.getOrderId());
+
+        for (OrderCars orderCar : cars) {
+            CarDetails carDetails = new CarDetails();
+            carDetails.setName(orderCar.getCar().getBrand() + " " + orderCar.getCar().getModel());
+            carDetails.setPrice(orderCar.getCar().getAmount());
+            carDetails.setQuantity(orderCar.getQuantity());
+            carsDetails.add(carDetails);
+        }
+        return carsDetails;
+    }
+
+    public Invoice getOrderInvoice(Long orderId) {
+        Order order = getOrderById(orderId);
+        return createInvoiceFromOrder(order);
+    }
+
+    private Order getOrderById(Long orderId) {
+        return orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+    }
+
+    private Invoice createInvoiceFromOrder(Order order) {
+        Invoice invoice = new Invoice();
+        invoice.setOrderId(order.getOrderId());
+        invoice.setCars(getCarsDetails(order));
+        invoice.setSubTotal(calculateTotal(invoice.getCars()));
+        invoice.setTax(invoice.getSubTotal().multiply(BigDecimal.valueOf(0.2)));
+        invoice.setTips(invoice.getSubTotal().multiply(BigDecimal.valueOf(0.2)));
+        invoice.setGrandTotal(invoice.getSubTotal().add(invoice.getTax()).add(invoice.getTips()));
+        invoice.setStatus(order.getOrderStatus());
+        return invoice;
+    }
+
 
     // Method to update an order by ID
 //    @Transactional

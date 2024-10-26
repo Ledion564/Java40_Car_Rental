@@ -75,6 +75,6 @@ public class Category {
         updatedAt = LocalDateTime.now();
     }
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Car> car;
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Car> car;
 }
