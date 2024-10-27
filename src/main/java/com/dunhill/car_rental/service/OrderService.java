@@ -15,10 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -100,10 +97,67 @@ public class OrderService {
         return carsDetails;
     }
 
-    public Invoice getOrderInvoice(Long orderId) {
-        Order order = getOrderById(orderId);
-        return createInvoiceFromOrder(order);
+    public Invoice getOrderInvoice(Long orderId,Authentication authentication) {
+        if(authentication.isAuthenticated()) {
+            String usernameOrEmail = authentication.getName();
+            User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+            Order order = orderRepository.findById(orderId)
+                    .orElseThrow(() -> new RuntimeException("Order not found"));
+            Set<Role> roleSet = user.getRoles();
+            for (Role role : roleSet) {
+                if (role.getRole().equals("ROLE_CUSTOMER")) {
+                    if (order.getCustomer().getId() == user.getCustomer().getId()) {
+                        return createInvoiceFromOrder(order);
+                    }
+                } else if (role.getRole().equals("ROLE_HR")) {
+                    return createInvoiceFromOrder(order);
+                }
+                else {
+                    throw new RuntimeException("Dear customer this does not belong to your order");
+                }
+            }
+            throw new RuntimeException("Your role does not have access to this endpoint");
+//            Order order = getOrderById(orderId);
+//            return createInvoiceFromOrder(order);
+        }
+        throw new RuntimeException("Please authenticate in order to process your request");
+
     }
+
+
+//    public Invoice getOrderInvoice(Long orderId, Authentication authentication) {
+//        if (!authentication.isAuthenticated()) {
+//            throw new RuntimeException("Unauthenticated access");
+//        }
+//
+//        String usernameOrEmail = authentication.getName();
+//        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+//
+//        Set<Role> roleSet = user.getRoles();
+//        boolean isCustomer = roleSet.stream().anyMatch(role -> role.getRole().equals("ROLE_CUSTOMER"));
+//        boolean isPersonnel = roleSet.stream().anyMatch(role -> role.getRole().equals("ROLE_PERSONEL"));
+//
+//        Order order = orderRepository.findById(orderId)
+//                .orElseThrow(() -> new RuntimeException("Order not found"));
+//
+//        if (isCustomer) {
+//            if (user.getCustomer() != null && user.getCustomer().getId().equals(order.getCustomer().getId())) {
+//                return createInvoiceFromOrder(order);
+//            } else {
+//                throw new RuntimeException("Dear customer, this order does not belong to you.");
+//            }
+//        }
+//
+//        if (isPersonnel) {
+//            return createInvoiceFromOrder(order);
+//        }
+//
+//        // Default case: if not a customer or personnel, proceed based on other roles or throw error
+//        throw new RuntimeException("Dear personnel, this order does not belong to you.");
+//    }
+
 
     private Order getOrderById(Long orderId) {
         return orderRepository.findById(orderId)

@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -84,9 +85,11 @@ public class OrderController {
         }
 
     @Operation(summary = "Get invoice by order ID")
+    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_HR')")
     @GetMapping("/invoice/{id}")
     public ResponseEntity<Invoice> getOrderInvoice(
             @Parameter(description = "Order ID") @PathVariable Long id) {
-        return ResponseEntity.ok(orderService.getOrderInvoice(id));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok(orderService.getOrderInvoice(id,authentication));
     }
 }
