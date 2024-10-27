@@ -14,11 +14,11 @@ import lombok.Setter;
 public class LoginDto {
 
     @Schema(description = "Username of the user", example = "john_doe", required = true)
-    private String username;
+    private String usernameOrEmail;
 
     @Schema(description = "Password of the user", example = "password123", required = true)
     private String password;
 
-    @Schema(description = "Email address of the user", example = "john.doe@example.com", required = true)
-    private String email;
+//    @Schema(description = "Email address of the user", example = "john.doe@example.com", required = true)
+//    private String email;
 }
