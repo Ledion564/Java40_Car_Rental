@@ -39,15 +39,15 @@
 //            if (!customerRepository.existsByPhone(customer.getPhone())) {
 //                Customer savedCustomer = customerRepository.save(customer);
 //                User user = new User();
-//                user.setUsername(customer.getPhone()); // Or use another unique identifier
+//                user.setUsername(customer.getFirstName()); // Or use another unique identifier
 //                user.setPassword("password123"); // In a real application, you would hash the password
-//                user.setEmail(customer.getPhone() + "@example.com"); // Use a valid email format
+//                user.setEmail(customer.getFirstName() + "@example.com"); // Use a valid email format
 //                Set<Role> roles = new HashSet<>();
 //                Role roleCustomer = roleRepository.findByRole("ROLE_CUSTOMER")
 //                        .orElseThrow(() -> new RuntimeException("Role not found"));
 //                roles.add(roleCustomer);
 //                user.setRoles(roles);
-//                user.setCustomer(customer); // Associate user with the customer
+//                user.setCustomer(savedCustomer); // Associate user with the customer
 //
 //                userRepository.save(user);
 //            }
