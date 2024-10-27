@@ -1,4 +1,4 @@
-package com.dunhill.car_rental.dtos.securityDto;
+package com.dunhill.car_rental.dtos;
 
 import com.dunhill.car_rental.dtos.userDto.CreateUserDto;
 import io.swagger.v3.oas.annotations.media.Schema;

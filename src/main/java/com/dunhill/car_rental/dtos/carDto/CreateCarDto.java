@@ -48,7 +48,7 @@ public class CreateCarDto {
 
     @Schema(description = "Amount for renting the car", example = "100", required = true)
     @PositiveOrZero(message = "Amount must be zero or a positive number")
-    private long amount;
+    private Double amount;
 
     @Schema(description = "User who created the entry", example = "admin", required = true)
     @NotBlank(message = "Created by is required")

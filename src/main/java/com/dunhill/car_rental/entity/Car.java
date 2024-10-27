@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "cars")
+@Table(name = "cars", uniqueConstraints = @UniqueConstraint(columnNames = {"brand", "model", "manufacture_year"}))
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,7 +67,7 @@ public class Car {
     @JoinColumn(name = "category_id",nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviewList;
+//    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Review> reviewList;
 
 }

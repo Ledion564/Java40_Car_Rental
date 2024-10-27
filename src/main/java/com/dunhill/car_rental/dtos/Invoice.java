@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.dtos;
 
 
-import com.dunhill.car_rental.entity.Car;
+import com.dunhill.car_rental.dtos.carDto.CarDetails;
 import com.dunhill.car_rental.entity.enums.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;

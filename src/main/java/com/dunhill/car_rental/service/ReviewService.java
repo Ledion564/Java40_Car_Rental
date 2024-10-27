@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.service;
 
-import com.dunhill.car_rental.dtos.CreateReviewDto;
-import com.dunhill.car_rental.dtos.ResponseReviewDto;
+import com.dunhill.car_rental.dtos.reviewDto.CreateReviewDto;
+import com.dunhill.car_rental.dtos.reviewDto.ResponseReviewDto;
 import com.dunhill.car_rental.entity.Car;
 import com.dunhill.car_rental.entity.Review;
 import com.dunhill.car_rental.exceptions.NotFoundException;

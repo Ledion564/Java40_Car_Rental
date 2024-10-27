@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.controller;
 
-import com.dunhill.car_rental.dtos.CreateCarDto;
-import com.dunhill.car_rental.dtos.ResponseCarDto;
+import com.dunhill.car_rental.dtos.carDto.CreateCarDto;
+import com.dunhill.car_rental.dtos.carDto.ResponseCarDto;
 import com.dunhill.car_rental.service.CarService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -71,7 +71,7 @@ public class CarController {
     @Operation(summary = "Search Car REST API", description = "Search Car REST API is used to search cars based on the query")
     @ApiResponse(responseCode = "200", description = "Http Status 200 SUCCESS")
     @GetMapping("/filter")
-    public ResponseEntity<List<ResponseCarDto>> search(@RequestParam(value = "brand", required = false) String brand, @RequestParam(value = "model", required = false) String model, @RequestParam(value = "bodyType", required = false) String bodyType, @RequestParam(value = "manufactureYear", required = false) LocalDate manufactureYear, @RequestParam(value = "colour", required = false) String colour, @RequestParam(value = "mileAge", required = false) Long mileage, @RequestParam(value = "amount", required = false) Long amount) {
+    public ResponseEntity<List<ResponseCarDto>> search(@RequestParam(value = "brand", required = false) String brand, @RequestParam(value = "model", required = false) String model, @RequestParam(value = "bodyType", required = false) String bodyType, @RequestParam(value = "manufactureYear", required = false) LocalDate manufactureYear, @RequestParam(value = "colour", required = false) String colour, @RequestParam(value = "mileAge", required = false) Long mileage, @RequestParam(value = "amount", required = false) Double amount) {
         return ResponseEntity.ok(carService.search(brand, model, bodyType, manufactureYear, colour, mileage, amount));
 
 

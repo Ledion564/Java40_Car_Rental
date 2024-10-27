@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.service;
 
-import com.dunhill.car_rental.dtos.CreateRentalDto;
-import com.dunhill.car_rental.dtos.ResponseRentalDto;
+import com.dunhill.car_rental.dtos.rentalDto.CreateRentalDto;
+import com.dunhill.car_rental.dtos.rentalDto.ResponseRentalDto;
 import com.dunhill.car_rental.entity.Rental;
 import com.dunhill.car_rental.exceptions.NotFoundException;
 import com.dunhill.car_rental.mapper.RentalMapper;

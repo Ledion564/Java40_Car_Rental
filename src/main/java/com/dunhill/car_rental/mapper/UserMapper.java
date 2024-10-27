@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.mapper;
 
-import com.dunhill.car_rental.dtos.CreateUserDto;
-import com.dunhill.car_rental.dtos.ResponseUserDto;
+import com.dunhill.car_rental.dtos.userDto.CreateUserDto;
+import com.dunhill.car_rental.dtos.userDto.ResponseUserDto;
 import com.dunhill.car_rental.entity.User;
 import org.springframework.stereotype.Component;
 

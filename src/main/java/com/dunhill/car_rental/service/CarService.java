@@ -1,6 +1,6 @@
 package com.dunhill.car_rental.service;
-
-import com.dunhill.car_rental.dtos.*;
+import com.dunhill.car_rental.dtos.carDto.CreateCarDto;
+import com.dunhill.car_rental.dtos.carDto.ResponseCarDto;
 import com.dunhill.car_rental.entity.Car;
 import com.dunhill.car_rental.entity.Category;
 import com.dunhill.car_rental.entity.Review;
@@ -9,13 +9,19 @@ import com.dunhill.car_rental.mapper.CarMapper;
 import com.dunhill.car_rental.mapper.ReviewMapper;
 import com.dunhill.car_rental.repository.CarRepository;
 import com.dunhill.car_rental.repository.CategoryRepository;
+import com.dunhill.car_rental.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+
+
 
 @AllArgsConstructor
 @Service
@@ -24,6 +30,7 @@ public class CarService {
     private CarRepository carRepository;
     private CategoryRepository categoryRepository;
     private CarMapper carMapper;
+    private ReviewRepository reviewRepository;
     private ReviewMapper reviewMapper;
 
     public ResponseCarDto save(CreateCarDto createCarDto){
@@ -39,9 +46,12 @@ public class CarService {
     public List<ResponseCarDto> getAll(){
         List<Car> list = carRepository.findAll();
         List<ResponseCarDto> responseCarDtos = new ArrayList<>();
+        int page = 0;
+        int size = 10;
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
         for(Car car : list){
             ResponseCarDto responseCarDto = carMapper.mapToDto(car);
-            List<Review> reviews =car.getReviewList();
+            List<Review> reviews = reviewRepository.findByCarId(car.getId(), pageable);
             responseCarDto.setReviews(reviews.stream().map(review -> reviewMapper.mapToDto(review)).toList());
             responseCarDtos.add(responseCarDto);
 
@@ -81,7 +91,7 @@ public class CarService {
 ////        return carMapper.mapToDto(carRepository.save(found));
 //    }
 
-    public List<ResponseCarDto> search(String brand, String model, String bodyType, LocalDate manufactureYear, String colour, Long mileage, Long amount){
+    public List<ResponseCarDto> search(String brand, String model, String bodyType, LocalDate manufactureYear, String colour, Long mileage, Double amount){
         return carRepository.findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmount(brand,model,bodyType,manufactureYear,colour,mileage,amount)
                 .stream().map(carMapper::mapToDto).toList();
 

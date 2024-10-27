@@ -1,19 +1,15 @@
 package com.dunhill.car_rental.RepositoryTest;
-
-
 import com.dunhill.car_rental.entity.Car;
 import com.dunhill.car_rental.repository.CarRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.springframework.test.web.servlet.result.StatusResultMatchersExtensionsKt.isEqualTo;
+
 
 @DataJpaTest
 public class CarRepositoryTest {
@@ -27,9 +23,9 @@ public class CarRepositoryTest {
 
     @BeforeEach
     void setup(){
-        car = Car.builder().model("benz").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("black").mileAge(220L).brand("bclass").amount(100L).build();
-        car1 = Car.builder().model("volkswagen").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("blue").mileAge(200L).brand("golf").amount(200L).id(4L).build();
-        car2 = Car.builder().model("volkswagen").bodyType("van").colour("blue").manufactureYear(LocalDate.of(1997,10,10)).mileAge(200L).brand("golf").amount(300L).id(5L).build();
+        car = Car.builder().model("benz").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("black").mileAge(220L).brand("bclass").amount(100D).build();
+        car1 = Car.builder().model("volkswagen").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("blue").mileAge(200L).brand("golf").amount(200D).id(4L).build();
+        car2 = Car.builder().model("volkswagen").bodyType("van").colour("blue").manufactureYear(LocalDate.of(1997,10,10)).mileAge(200L).brand("golf").amount(300D).id(5L).build();
     }
 
 

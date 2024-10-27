@@ -1,8 +1,9 @@
 package com.dunhill.car_rental.controller;
 
-import com.dunhill.car_rental.dtos.CreateCustomerDto;
-import com.dunhill.car_rental.dtos.CreateUserDto;
-import com.dunhill.car_rental.dtos.LoginDto;
+import com.dunhill.car_rental.dtos.CreatePersonelDto;
+import com.dunhill.car_rental.dtos.customerDto.CreateCustomerDto;
+import com.dunhill.car_rental.dtos.userDto.CreateUserDto;
+import com.dunhill.car_rental.dtos.userDto.LoginDto;
 import com.dunhill.car_rental.service.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,7 +37,12 @@ public class AccountController {
         return ResponseEntity.ok(accountService.register(createCustomerDto));
     }
 
-//    @PostMapping("/personel")
-//public ResponseEntity<>
+    @Operation(summary = "Register new personnel")
+    @ApiResponse(responseCode = "200", description = "Successfully registered")
+    @ApiResponse(responseCode = "400", description = "Invalid request data")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
+    public ResponseEntity<String> registerPersonel(@RequestBody CreatePersonelDto createPersonelDto) {
+        return ResponseEntity.ok(accountService.registerPersonel(createPersonelDto));
+    }
 
 }

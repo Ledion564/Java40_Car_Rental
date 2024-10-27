@@ -17,7 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "categories")
+@Table(name = "categories", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"user_name", "category_type"})
+})
 public class Category {
 
     @Id

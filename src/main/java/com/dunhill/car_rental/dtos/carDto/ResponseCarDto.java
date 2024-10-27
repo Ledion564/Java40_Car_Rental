@@ -41,7 +41,7 @@ public class ResponseCarDto {
         private String status;
 
         @Schema(description = "Rental amount for the car", example = "100")
-        private long amount;
+        private Double amount;
 
         @Schema(description = "User who created the car entry", example = "admin")
         private String createdBy;

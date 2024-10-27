@@ -1,8 +1,6 @@
 package com.dunhill.car_rental.service;
-
-import com.dunhill.car_rental.dtos.CreateUserDto;
-import com.dunhill.car_rental.dtos.ResponseUserDto;
-import com.dunhill.car_rental.entity.Role;
+import com.dunhill.car_rental.dtos.userDto.CreateUserDto;
+import com.dunhill.car_rental.dtos.userDto.ResponseUserDto;
 import com.dunhill.car_rental.entity.User;
 import com.dunhill.car_rental.exceptions.NotFoundException;
 import com.dunhill.car_rental.mapper.UserMapper;
@@ -11,11 +9,8 @@ import com.dunhill.car_rental.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 @Service
 @AllArgsConstructor

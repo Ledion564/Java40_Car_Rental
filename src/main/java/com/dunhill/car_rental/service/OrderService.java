@@ -1,13 +1,13 @@
 package com.dunhill.car_rental.service;
-import com.dunhill.car_rental.dtos.CarDetails;
+import com.dunhill.car_rental.dtos.carDto.CarDetails;
 import com.dunhill.car_rental.dtos.Invoice;
+import com.dunhill.car_rental.dtos.orderDto.OrderRequest;
 import com.dunhill.car_rental.entity.*;
-import com.dunhill.car_rental.dtos.CreateOrderDto;
+import com.dunhill.car_rental.dtos.orderDto.CreateOrderDto;
 import com.dunhill.car_rental.entity.enums.OrderStatus;
-import com.dunhill.car_rental.mapper.CategoryMapper;
 import com.dunhill.car_rental.repository.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -16,8 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -29,53 +30,49 @@ public class OrderService {
     private OrderCarRepository orderCarRepository;
     private CustomerRepository customerRepository;
     private CarRepository carRepository;
+    private final TransactionalService transactionalService;
 
-    @Transactional
-    public Order createOrder(CreateOrderDto createOrderDto, Authentication authentication) {
-        Order order = new Order();
-        order.setOrderDate(LocalDateTime.now());
-        order.setOrderStatus(OrderStatus.PROCESSING);
-        List<OrderCars> orderCarsList = new ArrayList<>();
 
+    public Long createOrderBasedOnAuthentication(@Valid OrderRequest orderRequest, Authentication authentication) {
         if (authentication instanceof AnonymousAuthenticationToken || !authentication.isAuthenticated()) {
-            // Create new Customer for anonymous user
-            Customer customer = new Customer();
-            customer.setFirstName(createOrderDto.getFirstName());
-            customer.setLastName(createOrderDto.getLastName());
-            customer.setPhone(createOrderDto.getPhone());
-            customer.setAddress(createOrderDto.getAddress());
-            customer = customerRepository.save(customer);
-            order.setCustomer(customer);
-        } else {
-            // Retrieve the authenticated user and find their customer
-            String usernameOrEmail = authentication.getName();
-            User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
-                    .orElseThrow(() -> new RuntimeException("User not found"));
-
-            // Ensure user has a linked customer
-            Customer registeredCustomer = user.getCustomer();
-            if (registeredCustomer == null) {
-                throw new RuntimeException("Customer not found for the authenticated user.");
-            }
-
-            order.setCustomer(registeredCustomer);
+            // Guest order creation
+            return transactionalService.createOrderForGuest(
+                    orderRequest.getCars(),
+                    orderRequest.getCustomerName(),
+                    orderRequest.getCustomerAddress(),
+                    orderRequest.getCustomerPhone()
+            ).getOrderId();
         }
 
-        // Add cars to the order
-        for (CreateOrderDto.OrderCarDto orderCarDto : createOrderDto.getOrderCars()) {
-            Car car = carRepository.findById(orderCarDto.getCarId())
-                    .orElseThrow(() -> new RuntimeException("Car not found"));
-            OrderCars orderCar = new OrderCars();
-            orderCar.setCar(car);
-            orderCar.setOrder(order);
-            orderCar.setQuantity(orderCarDto.getQuantity());
-
-            orderCarsList.add(orderCar);
-        }
-
-        order.setOrderCars(orderCarsList);
-        return orderRepository.save(order);
+        // Authenticated user order creation
+        String email = authentication.getName();
+        return transactionalService.createOrderForPrincipalCustomer(
+                orderRequest.getCars(),
+                orderRequest.getCustomerName(),
+                orderRequest.getCustomerAddress(),
+                orderRequest.getCustomerPhone(),
+                email
+        ).getOrderId();
     }
+
+
+    public OrderStatus getOrderStatus(Long id) {
+        return orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found"))
+                .getOrderStatus();
+    }
+
+
+    public Map<Long, String> getAllOrdersAndStatuses() {
+        List<Order> orders = orderRepository.findAll();
+        Map<Long, String> ordersAndStatuses = new HashMap<>();
+
+        for (Order order : orders) {
+            ordersAndStatuses.put(order.getOrderId(), order.getOrderStatus().name());
+        }
+        return ordersAndStatuses;
+    }
+
     private BigDecimal calculateTotal(List<CarDetails> carDetails) {
         BigDecimal total = BigDecimal.ZERO;
 
@@ -85,15 +82,13 @@ public class OrderService {
         return total;
     }
 
-
-    // Method to get all orders
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
 
     private List<CarDetails> getCarsDetails(Order order) {
         List<CarDetails> carsDetails = new ArrayList<>();
-        List<OrderCars> cars = orderCarRepository.findByOrderId(order.getOrderId());
+        List<OrderCars> cars = orderCarRepository.findByOrderOrderId(order.getOrderId());
 
         for (OrderCars orderCar : cars) {
             CarDetails carDetails = new CarDetails();
@@ -127,48 +122,33 @@ public class OrderService {
         return invoice;
     }
 
+    public Long updateOrderBasedOnAuthentication(Long orderId, @Valid OrderRequest orderRequest, Authentication authentication) {
+        if (authentication instanceof AnonymousAuthenticationToken || !authentication.isAuthenticated()) {
+            // Update order for a guest
+            return transactionalService.updateOrderForGuest(
+                    orderId,
+                    orderRequest.getCars(),
+                    orderRequest.getCustomerName(),
+                    orderRequest.getCustomerAddress(),
+                    orderRequest.getCustomerPhone()
+            ).getOrderId();
+        }
 
-    // Method to update an order by ID
-//    @Transactional
-//    public Order updateOrder(Long orderId, CreateOrderDto createOrderDto) {
-//        Order order = orderRepository.findById(orderId)
-//                .orElseThrow(() -> new RuntimeException("Order not found"));
-//
-//        // Update customer details
-//        Customer customer;
-//        if (createOrderDto.getCustomerId() != null) {
-//            customer = customerRepository.findById(createOrderDto.getCustomerId())
-//                    .orElseThrow(() -> new RuntimeException("Customer not found"));
-//        } else {
-//            customer = order.getCustomer();
-//            customer.setFirstName(createOrderDto.getFirstName());
-//            customer.setLastName(createOrderDto.getLastName());
-//            customer.setPhone(createOrderDto.getPhone());
-//            customer.setAddress(createOrderDto.getAddress());
-//            customer = customerRepository.save(customer);
-//        }
-//
-//        order.setCustomer(customer);
-//        order.setOrderDate(LocalDateTime.now());
-//        order.setOrderStatus(createOrderDto.getOrderStatus());
-//
-//        // Update order cars
-//        List<OrderCars> orderCarsList = new ArrayList<>();
-//        for (CreateOrderDto.OrderCarDto orderCarDto : createOrderDto.getOrderCars()) {
-//            Car car = carRepository.findById(orderCarDto.getCarId())
-//                    .orElseThrow(() -> new RuntimeException("Car not found"));
-//
-//            OrderCars orderCar = new OrderCars();
-//            orderCar.setCar(car);
-//            orderCar.setOrder(order);
-//            orderCar.setQuantity(orderCarDto.getQuantity());
-//
-//            orderCarsList.add(orderCar);
-//        }
-//        order.setOrderCars(orderCarsList);
-//
-//        return orderRepository.save(order);
-//    }
+        // Update order for an authenticated user
+        String email = authentication.getName();
+        return transactionalService.updateOrderForPrincipalClient(
+                orderId,
+                orderRequest.getCars(),
+                orderRequest.getCustomerName(),
+                orderRequest.getCustomerAddress(),
+                orderRequest.getCustomerPhone(),
+                email
+        ).getOrderId();
+    }
+
+
+
+
 
     // Method to delete an order by ID
     @Transactional

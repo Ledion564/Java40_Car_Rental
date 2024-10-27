@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.controller;
 
-import com.dunhill.car_rental.dtos.CreateRentalDto;
-import com.dunhill.car_rental.dtos.ResponseRentalDto;
+import com.dunhill.car_rental.dtos.rentalDto.CreateRentalDto;
+import com.dunhill.car_rental.dtos.rentalDto.ResponseRentalDto;
 import com.dunhill.car_rental.service.RentalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

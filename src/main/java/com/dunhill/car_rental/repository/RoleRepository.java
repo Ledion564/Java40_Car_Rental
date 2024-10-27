@@ -16,6 +16,9 @@ import java.util.Optional;
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Long> {
 
+   boolean existsByRole(String roleName);
+
+
 //   @Modifying
 //   @Transactional
 //   @Query(value = "CREATE ROLE IF NOT EXISTS 'ROLE_ADMIN'", nativeQuery = true)

@@ -20,7 +20,7 @@ public interface CarRepository extends JpaRepository<Car,Long> {
             "AND (:colour IS NULL OR :colour = '' OR c.colour = :colour) " +
             "AND (:mileage IS NULL OR c.mileAge = :mileage) " +
             "AND (:amount IS NULL OR c.amount = :amount)")
-    List<Car> findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmount(String brand, String model, String bodyType, LocalDate manufactureYear, String colour, Long mileage, Long amount);
+    List<Car> findByBrandAndModelAndBodyTypeAndManufactureYearAndColourAndMileAgeAndAmount(String brand, String model, String bodyType, LocalDate manufactureYear, String colour, Long mileage,Double amount);
 
     //JQPL Query with index
     @Query("SELECT c FROM Car c WHERE c.brand=?1 AND c.model=?2 AND c.bodyType=?3 AND c.manufactureYear=?4 AND c.colour=?5 AND c.mileAge=?6 AND c.amount=?7")
@@ -91,5 +91,6 @@ public interface CarRepository extends JpaRepository<Car,Long> {
     @Query(value = "SELECT * FROM cars WHERE brand=?1 and body_type=?2", nativeQuery = true)
     List<Car> findByBrandAndBodyTypeWithIndex(@Param("brand") String brand, @Param("body_type") String body_type);
 
+    boolean existsByBrandAndModelAndManufactureYear(String brand, String model, LocalDate manufactureYear);
 
 }

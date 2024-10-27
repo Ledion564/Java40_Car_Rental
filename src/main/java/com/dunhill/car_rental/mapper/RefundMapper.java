@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.mapper;
 
-import com.dunhill.car_rental.dtos.CreateRefundDto;
-import com.dunhill.car_rental.dtos.ResponseRefundDto;
+import com.dunhill.car_rental.dtos.refundDto.CreateRefundDto;
+import com.dunhill.car_rental.dtos.refundDto.ResponseRefundDto;
 import com.dunhill.car_rental.entity.Refund;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.service;
 
-import com.dunhill.car_rental.dtos.CreateRevenueDto;
-import com.dunhill.car_rental.dtos.ResponseRevenueDto;
+import com.dunhill.car_rental.dtos.revenueDto.CreateRevenueDto;
+import com.dunhill.car_rental.dtos.revenueDto.ResponseRevenueDto;
 import com.dunhill.car_rental.entity.Revenue;
 import com.dunhill.car_rental.mapper.RevenueMapper;
 import com.dunhill.car_rental.repository.RevenueRepository;

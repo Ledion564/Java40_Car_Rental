@@ -1,14 +1,16 @@
 package com.dunhill.car_rental.controller;
-import com.dunhill.car_rental.dtos.CreateOrderDto;
+import com.dunhill.car_rental.dtos.orderDto.CreateOrderDto;
 import com.dunhill.car_rental.dtos.Invoice;
+import com.dunhill.car_rental.dtos.orderDto.OrderRequest;
 import com.dunhill.car_rental.entity.Order;
 import com.dunhill.car_rental.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,10 +32,10 @@ public class OrderController {
     @ApiResponse(responseCode = "201", description = "Http Status 201 CREATED")
     @SecurityRequirement(name = "basicAuth")
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody CreateOrderDto createOrderDTO) {
+    public ResponseEntity<Long> createOrder(@RequestBody OrderRequest orderRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Order order = orderService.createOrder(createOrderDTO,authentication);
-        return ResponseEntity.ok(order);
+        Long orderId = orderService.createOrderBasedOnAuthentication(orderRequest, authentication);
+        return ResponseEntity.ok(orderId);
 }
 
     @Operation(summary = "Retrieve All Orders REST API", description = "Fetches a list of all existing orders.")
@@ -56,11 +58,21 @@ public class OrderController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody CreateOrderDto createOrderDto) {
-//            Order updatedOrder = orderService.updateOrder(id, createOrderDto);
-//            return ResponseEntity.ok(updatedOrder);
-//        }
+    @PutMapping("/id")
+    @Operation(summary = "Update an order")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Order updated successfully"),
+            @ApiResponse(responseCode = "404", description = "Order not found"),
+            @ApiResponse(responseCode = "400", description = "Invalid input")
+    })
+    public ResponseEntity<Long> updateOrder(
+            @Parameter(description = "Order ID to update", required = true) Long id,
+            @RequestBody OrderRequest orderRequest) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long orderId = orderService.updateOrderBasedOnAuthentication(id, orderRequest, authentication);
+        return ResponseEntity.ok(orderId);
+    }
 
     @Operation(summary = "Delete Order REST API", description = "Deletes an existing order by its ID.")
     @ApiResponse(responseCode = "204", description = "Http Status 204 NO CONTENT")
@@ -70,9 +82,10 @@ public class OrderController {
             return ResponseEntity.noContent().build();
         }
 
-
-        @GetMapping
-        public ResponseEntity<Invoice> getOrderInvoice(@PathVariable Long id){
-        return ResponseEntity.ok(orderService.getOrderInoice(id));
-        }
+    @Operation(summary = "Get invoice by order ID")
+    @GetMapping("/invoice/{id}")
+    public ResponseEntity<Invoice> getOrderInvoice(
+            @Parameter(description = "Order ID") @PathVariable Long id) {
+        return ResponseEntity.ok(orderService.getOrderInvoice(id));
+    }
 }

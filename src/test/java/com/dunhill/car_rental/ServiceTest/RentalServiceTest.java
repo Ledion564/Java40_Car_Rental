@@ -2,8 +2,8 @@ package com.dunhill.car_rental.ServiceTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.dunhill.car_rental.dtos.CreateRentalDto;
-import com.dunhill.car_rental.dtos.ResponseRentalDto;
+import com.dunhill.car_rental.dtos.rentalDto.CreateRentalDto;
+import com.dunhill.car_rental.dtos.rentalDto.ResponseRentalDto;
 import com.dunhill.car_rental.entity.Rental;
 import com.dunhill.car_rental.mapper.RentalMapper;
 import com.dunhill.car_rental.repository.RentalRepository;

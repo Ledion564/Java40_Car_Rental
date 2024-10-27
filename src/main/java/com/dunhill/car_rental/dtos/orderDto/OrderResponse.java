@@ -1,4 +1,4 @@
-package com.dunhill.car_rental.dtos;
+package com.dunhill.car_rental.dtos.orderDto;
 
 import com.dunhill.car_rental.entity.Personel;
 import com.dunhill.car_rental.entity.enums.OrderStatus;

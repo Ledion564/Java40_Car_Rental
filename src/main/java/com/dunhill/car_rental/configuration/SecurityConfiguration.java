@@ -47,7 +47,13 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/orders").permitAll()
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/swagger-ui/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/swagger-ui/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/swagger-ui/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/v3/api-docs/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/v3/api-docs/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/v3/api-docs/**").permitAll()
 //                        .requestMatchers(HttpMethod.POST,"/auth/personel").permitAll()
                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());

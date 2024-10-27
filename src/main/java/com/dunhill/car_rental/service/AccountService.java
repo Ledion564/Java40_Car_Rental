@@ -1,8 +1,8 @@
 package com.dunhill.car_rental.service;
 
-import com.dunhill.car_rental.dtos.CreateCustomerDto;
+import com.dunhill.car_rental.dtos.customerDto.*;
 import com.dunhill.car_rental.dtos.CreatePersonelDto;
-import com.dunhill.car_rental.dtos.LoginDto;
+import com.dunhill.car_rental.dtos.userDto.LoginDto;
 import com.dunhill.car_rental.entity.Customer;
 import com.dunhill.car_rental.entity.Personel;
 import com.dunhill.car_rental.entity.Role;

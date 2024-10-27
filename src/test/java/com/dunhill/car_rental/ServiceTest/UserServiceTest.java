@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.ServiceTest;
 
-import com.dunhill.car_rental.dtos.CreateUserDto;
-import com.dunhill.car_rental.dtos.ResponseUserDto;
+import com.dunhill.car_rental.dtos.userDto.CreateUserDto;
+import com.dunhill.car_rental.dtos.userDto.ResponseUserDto;
 import com.dunhill.car_rental.entity.User;
 import com.dunhill.car_rental.mapper.UserMapper;
 import com.dunhill.car_rental.repository.UserRepository;

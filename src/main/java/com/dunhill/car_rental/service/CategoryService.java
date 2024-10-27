@@ -1,8 +1,8 @@
 package com.dunhill.car_rental.service;
 
 
-import com.dunhill.car_rental.dtos.CreateCategoryDto;
-import com.dunhill.car_rental.dtos.ResponseCategoryDto;
+import com.dunhill.car_rental.dtos.categoryDto.CreateCategoryDto;
+import com.dunhill.car_rental.dtos.categoryDto.ResponseCategoryDto;
 import com.dunhill.car_rental.entity.Category;
 import com.dunhill.car_rental.mapper.CategoryMapper;
 import com.dunhill.car_rental.repository.CategoryRepository;

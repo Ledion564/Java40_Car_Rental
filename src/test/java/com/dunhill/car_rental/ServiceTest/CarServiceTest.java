@@ -1,7 +1,7 @@
 package com.dunhill.car_rental.ServiceTest;
 
-import com.dunhill.car_rental.dtos.CreateCarDto;
-import com.dunhill.car_rental.dtos.ResponseCarDto;
+import com.dunhill.car_rental.dtos.carDto.CreateCarDto;
+import com.dunhill.car_rental.dtos.carDto.ResponseCarDto;
 import com.dunhill.car_rental.entity.Car;
 import com.dunhill.car_rental.mapper.CarMapper;
 import com.dunhill.car_rental.repository.CarRepository;
@@ -41,9 +41,9 @@ public class CarServiceTest {
 
     @BeforeEach
     void setup(){
-        car = Car.builder().model("benz").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("black").mileAge(220L).brand("bclass").amount(100L).build();
-        responseCarDto = ResponseCarDto.builder().model("benz").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("black").mileAge(220L).brand("bclass").amount(100L).build();
-        createCarDto = CreateCarDto.builder().model("benz").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("black").mileAge(220L).brand("bclass").amount(100L).build();
+        car = Car.builder().model("benz").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("black").mileAge(220L).brand("bclass").amount(100D).build();
+        responseCarDto = ResponseCarDto.builder().model("benz").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("black").mileAge(220L).brand("bclass").amount(100D).build();
+        createCarDto = CreateCarDto.builder().model("benz").bodyType("hatchback").manufactureYear(LocalDate.of(1997,10,10)).colour("black").mileAge(220L).brand("bclass").amount(100D).build();
     }
 
 
