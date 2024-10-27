@@ -41,6 +41,7 @@ public class AccountController {
     @ApiResponse(responseCode = "200", description = "Successfully registered")
     @ApiResponse(responseCode = "400", description = "Invalid request data")
     @ApiResponse(responseCode = "500", description = "Internal server error")
+    @PostMapping("/personel")
     public ResponseEntity<String> registerPersonel(@RequestBody CreatePersonelDto createPersonelDto) {
         return ResponseEntity.ok(accountService.registerPersonel(createPersonelDto));
     }

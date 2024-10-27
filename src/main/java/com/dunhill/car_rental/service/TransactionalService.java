@@ -84,9 +84,9 @@ public class TransactionalService {
         return order;
     }
 
-    private Customer findClientByEmail(String email) {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email " + email));
+    private Customer findClientByEmail(String usernameOrEmail) {
+        User user = userRepository.findByUsernameOrEmail(usernameOrEmail,usernameOrEmail)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email " + usernameOrEmail));
         return customerRepository.findById(user.getCustomer().getId())
                 .orElseThrow(() -> new RuntimeException("Client not found"));
     }
